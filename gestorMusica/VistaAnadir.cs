@@ -19,7 +19,7 @@ namespace ProyectoDintNuno
         public DateTime AdDate;
         public DateTime EdDate;
         public string Description;
-        public Image Image;
+        public Image Image { get; set; }
 
         public VistaAnadir()
         {
@@ -48,10 +48,27 @@ namespace ProyectoDintNuno
                 valido = true;
             }
             
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "JPeg Image|*.jpg|Png Image|*.png";
+            saveFileDialog.FileName = Name + "Image";
+
             
+
             if (valido)
             {
                 DialogResult = DialogResult.OK;
+                
+
+                System.IO.FileStream fs = (System.IO.FileStream)saveFileDialog.OpenFile();
+                switch (saveFileDialog.FilterIndex)
+                {
+                    case 1:
+                        this.btnAccept.Image.Save(fs, System.Drawing.Imaging.ImageFormat.Jpeg);
+                        break;
+                    case 2:
+                        this.btnAccept.Image.Save(fs, System.Drawing.Imaging.ImageFormat.Png);
+                        break;
+                }
             }
         }
 
