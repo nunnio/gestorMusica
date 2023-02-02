@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MySql.Data.MySqlClient;
 
 namespace ProyectoDintNuno
 {
@@ -79,7 +80,7 @@ namespace ProyectoDintNuno
         }
         private void subeDatos(string[] row)
         {
-           
+           MySqlConnectionStringBuilder builder = new MySqlConnectionStringBuilder()
         }
 
         private void button1_Click(object sender, EventArgs e)
