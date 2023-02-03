@@ -27,21 +27,21 @@ namespace ProyectoDintNuno
                 FlowLayoutPanel panel = new FlowLayoutPanel();
                 PictureBox pb = new PictureBox();
                 Label lblName = new Label();
-                Label lblArtist = new Label();                
+                Label lblArtist = new Label();
 
                 lblName.Text = form.Name;
                 lblName.Font = new Font("Segoe UI", 16);
                 lblName.TextAlign = ContentAlignment.MiddleCenter;
                 lblName.MinimumSize = new Size(180, 30);
                 //lblName.BackColor = Color.Brown;
-                lblName.Margin = new Padding(2,0,0,0);
+                lblName.Margin = new Padding(2, 0, 0, 0);
 
                 lblArtist.Text = form.PArtist;
                 lblArtist.Font = new Font("Segoe UI", 13);
                 lblArtist.TextAlign = ContentAlignment.MiddleCenter;
                 lblArtist.MinimumSize = new Size(180, 25);
                 //lblArtist.BackColor = Color.White;
-                lblArtist.Margin = new Padding(2,5,0,0);
+                lblArtist.Margin = new Padding(2, 5, 0, 0);
 
                 panel.Controls.Add(pb);
                 panel.Controls.Add(lblName);
@@ -75,13 +75,13 @@ namespace ProyectoDintNuno
 
                 subeDatos(row);
 
-                
+
 
             }
         }
         private void subeDatos(string[] row)
         {
-           //MySqlConnectionStringBuilder builder = new MySqlConnectionStringBuilder()
+            //MySqlConnectionStringBuilder builder = new MySqlConnectionStringBuilder()
         }
 
         private void button1_Click(object sender, EventArgs e)

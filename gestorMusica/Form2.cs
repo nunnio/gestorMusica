@@ -47,18 +47,18 @@ namespace ProyectoDintNuno
             {
                 valido = true;
             }
-            
+
             SaveFileDialog saveFileDialog = new SaveFileDialog();
             saveFileDialog.Filter = "JPeg Image|*.jpg|Png Image|*.png";
             saveFileDialog.FileName = Name + "Image";
 
-            
+
 
             if (valido)
             {
                 DialogResult = DialogResult.OK;
-                
-                
+
+
 
                 //System.IO.FileStream fs = (System.IO.FileStream)saveFileDialog.OpenFile();
                 /*switch (saveFileDialog.FilterIndex)
@@ -76,7 +76,7 @@ namespace ProyectoDintNuno
         private void btnExplore_Click(object sender, EventArgs e)
         {
             OpenFileDialog of = new OpenFileDialog();
-            if(of.ShowDialog() == DialogResult.OK)
+            if (of.ShowDialog() == DialogResult.OK)
             {
                 if (of.CheckFileExists)
                 {
@@ -86,9 +86,9 @@ namespace ProyectoDintNuno
                     {
                         ofd.Filter = "Archivos de imagen (*.jpg, *.jpeg, *.jpe, *.jfif, *.png) | *.jpg; *.jpeg; *.jpe; *.jfif; *.png";
                         string path = "@./../../imagenes";
-                                          
+
                     }
-                }                
+                }
             }
         }
 
@@ -101,7 +101,7 @@ namespace ProyectoDintNuno
             else
             {
                 tbName.BackColor = Color.White;
-            }      
+            }
         }
 
         private void tbArtist_TextChanged(object sender, EventArgs e)

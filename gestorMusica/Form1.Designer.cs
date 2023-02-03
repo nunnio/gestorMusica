@@ -1,4 +1,5 @@
 ﻿
+
 namespace ProyectoDintNuno
 {
     partial class VistaPrincipal
@@ -94,7 +95,7 @@ namespace ProyectoDintNuno
             this.btnAnadir.TabIndex = 3;
             this.btnAnadir.Text = "Nuevo";
             this.btnAnadir.UseVisualStyleBackColor = false;
-            this.btnAnadir.Click += new System.EventHandler(this.btnAnadir_Click);
+            //this.btnAnadir.Click += new System.EventHandler(this.btnAnadir_Click);
             // 
             // button1
             // 
@@ -105,12 +106,12 @@ namespace ProyectoDintNuno
             this.button1.TabIndex = 4;
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            //this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // tcVistaPrincipal
             // 
-            this.tcVistaPrincipal.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.tcVistaPrincipal.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tcVistaPrincipal.Controls.Add(this.tabPage1);
             this.tcVistaPrincipal.Controls.Add(this.tabPage2);
