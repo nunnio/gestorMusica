@@ -58,9 +58,10 @@ namespace ProyectoDintNuno
             {
                 DialogResult = DialogResult.OK;
                 
+                
 
-                System.IO.FileStream fs = (System.IO.FileStream)saveFileDialog.OpenFile();
-                switch (saveFileDialog.FilterIndex)
+                //System.IO.FileStream fs = (System.IO.FileStream)saveFileDialog.OpenFile();
+                /*switch (saveFileDialog.FilterIndex)
                 {
                     case 1:
                         this.btnAccept.Image.Save(fs, System.Drawing.Imaging.ImageFormat.Jpeg);
@@ -68,7 +69,7 @@ namespace ProyectoDintNuno
                     case 2:
                         this.btnAccept.Image.Save(fs, System.Drawing.Imaging.ImageFormat.Png);
                         break;
-                }
+                }*/
             }
         }
 
@@ -81,6 +82,12 @@ namespace ProyectoDintNuno
                 {
                     Image = Image.FromFile(of.FileName);
                     pbImage.Image = Image;
+                    using (OpenFileDialog ofd = new OpenFileDialog())
+                    {
+                        ofd.Filter = "Archivos de imagen (*.jpg, *.jpeg, *.jpe, *.jfif, *.png) | *.jpg; *.jpeg; *.jpe; *.jfif; *.png";
+                        string path = "@./../../imagenes";
+                                          
+                    }
                 }                
             }
         }
