@@ -34,7 +34,6 @@ namespace ProyectoDintNuno
             this.archivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.vistaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnAnadir = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.tcVistaPrincipal = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.flpConjunto = new System.Windows.Forms.FlowLayoutPanel();
@@ -97,17 +96,6 @@ namespace ProyectoDintNuno
             this.btnAnadir.Text = "Nuevo";
             this.btnAnadir.UseVisualStyleBackColor = false;
             this.btnAnadir.Click += new System.EventHandler(this.btnAnadir_Click);
-            // 
-            // button1
-            // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(757, 439);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(64, 20);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // tcVistaPrincipal
             // 
@@ -256,11 +244,11 @@ namespace ProyectoDintNuno
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(896, 466);
             this.Controls.Add(this.tcVistaPrincipal);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnAnadir);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "VistaPrincipal";
+            this.Text = " ";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.tcVistaPrincipal.ResumeLayout(false);
@@ -277,7 +265,6 @@ namespace ProyectoDintNuno
         private System.Windows.Forms.ToolStripMenuItem archivoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem vistaToolStripMenuItem;
         private System.Windows.Forms.Button btnAnadir;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TabControl tcVistaPrincipal;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.FlowLayoutPanel flpConjunto;
