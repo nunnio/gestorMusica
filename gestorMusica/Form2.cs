@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using System.IO;
 
 namespace ProyectoDintNuno
 {
@@ -19,6 +20,8 @@ namespace ProyectoDintNuno
         public DateTime AdDate;
         public DateTime EdDate;
         public string Description;
+
+        public string pathInic;
         public Image Image { get; set; }
 
         public VistaAnadir()
@@ -57,19 +60,20 @@ namespace ProyectoDintNuno
             if (valido)
             {
                 DialogResult = DialogResult.OK;
-
-
-
-                //System.IO.FileStream fs = (System.IO.FileStream)saveFileDialog.OpenFile();
-                /*switch (saveFileDialog.FilterIndex)
+                /*using (OpenFileDialog ofd = new OpenFileDialog())
                 {
-                    case 1:
-                        this.btnAccept.Image.Save(fs, System.Drawing.Imaging.ImageFormat.Jpeg);
-                        break;
-                    case 2:
-                        this.btnAccept.Image.Save(fs, System.Drawing.Imaging.ImageFormat.Png);
-                        break;
-                }*/
+                    ofd.Filter = "Archivos de imagen (*.jpg, *.jpeg, *.jpe, *.jfif, *.png) | *.jpg; *.jpeg; *.jpe; *.jfif; *.png";
+                    string pathFin = "@./imagenes";
+                    try
+                    {
+                        File.Copy(pathInic, pathFin, true);
+                        MessageBox.Show("La imagen se ha guardado correctamente.");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Ha ocurrido un error al intentar guardar la imagen. " + ex.Message);
+                    }
+                */
             }
         }
 
@@ -82,12 +86,7 @@ namespace ProyectoDintNuno
                 {
                     Image = Image.FromFile(of.FileName);
                     pbImage.Image = Image;
-                    using (OpenFileDialog ofd = new OpenFileDialog())
-                    {
-                        ofd.Filter = "Archivos de imagen (*.jpg, *.jpeg, *.jpe, *.jfif, *.png) | *.jpg; *.jpeg; *.jpe; *.jfif; *.png";
-                        string path = "@./../../imagenes";
-
-                    }
+                    pathInic = Path.GetFullPath(of.FileName);
                 }
             }
         }
@@ -117,4 +116,3 @@ namespace ProyectoDintNuno
         }
     }
 }
-

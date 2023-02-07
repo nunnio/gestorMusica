@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-//using MySql.Data.MySqlClient;
+using MySql.Data.MySqlClient;
 
 namespace ProyectoDintNuno
 {
@@ -81,15 +81,58 @@ namespace ProyectoDintNuno
         }
         private void subeDatos(string[] row)
         {
-            //MySqlConnectionStringBuilder builder = new MySqlConnectionStringBuilder()
-        }
+            MySqlConnectionStringBuilder builder = new MySqlConnectionStringBuilder();
+            builder.Server = "localhost";
+            builder.UserID = "root";
+            builder.Password = "";
+            builder.Database = "enclavedb";
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            //FlowLayoutPanel panel = new FlowLayoutPanel();
-            Label etiqueta = new Label();
-            etiqueta.Text = "Hey que pasa soy una etiqueta";
-            flpConjunto.Controls.Add(etiqueta);
+            MySqlConnection conn = new MySqlConnection(builder.ToString());
+            MySqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "INSERT INTO productos (id, name, partist, sartist, genre, format, type, addate, eddate, description, image) value " +
+                "(@id, @name, @partist, @sartist, @genre, @format, @type, @addate, @eddate, @description, @image)";
+
+            cmd.Parameters.AddWithValue("@id", row[0]);
+            cmd.Parameters.AddWithValue("@name", row[1]);
+            cmd.Parameters.AddWithValue("@partist", row[2]);
+            cmd.Parameters.AddWithValue("@sartist", row[3]);
+            cmd.Parameters.AddWithValue("@genre", row[4]);
+            cmd.Parameters.AddWithValue("@format", row[5]);
+            cmd.Parameters.AddWithValue("@type", row[6]);
+            cmd.Parameters.AddWithValue("@addate", row[7]);
+            cmd.Parameters.AddWithValue("@eddate", row[8]);
+            cmd.Parameters.AddWithValue("@descrpition", row[9]);
+            cmd.Parameters.AddWithValue("@image", row[10]);
+            try
+            {
+                conn.Open();
+                //...
+                cmd.ExecuteNonQuery();
+
+                /*Int32 rowsAffected = cmd.ExecuteNonQuery();
+                Console.WriteLine("RowsAffected: {0}", rowsAffected);*/
+
+                conn.Close(); //La conexión hay que cerrarla siempre al terminar
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("Error en conexión a base de datos\nFallo en conexión");
+            }
+            catch (Exception ex)
+            {
+                ex.ToString();
+            }
+
+            /*try
+            {
+                connection.Open();
+                Int32 rowsAffected = command.ExecuteNonQuery();
+                Console.WriteLine("RowsAffected: {0}", rowsAffected);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }*/
         }
-    }
+    }    
 }
