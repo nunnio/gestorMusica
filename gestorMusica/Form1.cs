@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace ProyectoDintNuno
 {
@@ -18,6 +19,7 @@ namespace ProyectoDintNuno
         {
             InitializeComponent();
         }
+        
 
         private void btnAnadir_Click(object sender, EventArgs e)
         {
@@ -59,27 +61,28 @@ namespace ProyectoDintNuno
 
                 string[] row = new string[11];
                 row[0] = Contador.ToString();
-                row[2] = form.Name;
-                row[3] = form.PArtist;
-                row[4] = form.SArtist;
-                row[5] = form.Genre;
-                row[6] = form.Format;
-                row[7] = form.Type;
-                row[8] = form.AdDate.ToString("G");
-                row[9] = form.EdDate.ToString("G");
-                row[10] = form.Description;
+                row[1] = form.Name;
+                row[2] = form.PArtist;
+                row[3] = form.SArtist;
+                row[4] = form.Genre;
+                row[5] = form.Format;
+                row[6] = form.Type;
+                row[7] = form.AdDate.ToString("G");
+                row[8] = form.EdDate.ToString("G");
+                row[9] = form.Description;
+                System.Drawing.Image img = form.Image;
 
                 dgvPrincipal.Rows.Add(row);
                 dgvPrincipal.Rows[dgvPrincipal.Rows.Count - 1].Cells["cImage"].Value = form.Image;
                 Contador++;
 
-                subeDatos(row);
+                subeDatos(row, img);
 
 
 
             }
         }
-        private void subeDatos(string[] row)
+        private void subeDatos(string[] row, System.Drawing.Image img)
         {
             MySqlConnectionStringBuilder builder = new MySqlConnectionStringBuilder();
             builder.Server = "localhost";
@@ -101,8 +104,8 @@ namespace ProyectoDintNuno
             cmd.Parameters.AddWithValue("@type", row[6]);
             cmd.Parameters.AddWithValue("@addate", row[7]);
             cmd.Parameters.AddWithValue("@eddate", row[8]);
-            cmd.Parameters.AddWithValue("@descrpition", row[9]);
-            cmd.Parameters.AddWithValue("@image", row[10]);
+            cmd.Parameters.AddWithValue("@description", row[9]);
+            cmd.Parameters.AddWithValue("@image", img);
             try
             {
                 conn.Open();
@@ -121,18 +124,21 @@ namespace ProyectoDintNuno
             catch (Exception ex)
             {
                 ex.ToString();
-            }
-
-            /*try
-            {
-                connection.Open();
-                Int32 rowsAffected = command.ExecuteNonQuery();
-                Console.WriteLine("RowsAffected: {0}", rowsAffected);
-            }
-            catch (Exception ex)
-            {
                 Console.WriteLine(ex.Message);
-            }*/
+            }
         }
     }    
 }
+/*CREATE TABLE productos (
+    id int PRIMARY KEY,
+    name VARCHAR(20) UNIQUE,
+    partist VARCHAR(45),
+    sartist VARCHAR(45),
+    genre VARCHAR(45),
+    format VARCHAR(10),
+    type VARCHAR(10),
+    addate DATE,
+eddate DATE,
+    description VARCHAR(255),
+    image BLOB
+);*/
