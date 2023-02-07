@@ -65,7 +65,8 @@ namespace ProyectoDintNuno
             this.vistaToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1045, 24);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(896, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -88,46 +89,46 @@ namespace ProyectoDintNuno
             this.btnAnadir.FlatAppearance.BorderColor = System.Drawing.SystemColors.ActiveCaption;
             this.btnAnadir.FlatAppearance.BorderSize = 0;
             this.btnAnadir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAnadir.Location = new System.Drawing.Point(961, 487);
+            this.btnAnadir.Location = new System.Drawing.Point(824, 422);
             this.btnAnadir.Margin = new System.Windows.Forms.Padding(0);
             this.btnAnadir.Name = "btnAnadir";
-            this.btnAnadir.Size = new System.Drawing.Size(75, 42);
+            this.btnAnadir.Size = new System.Drawing.Size(64, 36);
             this.btnAnadir.TabIndex = 3;
             this.btnAnadir.Text = "Nuevo";
             this.btnAnadir.UseVisualStyleBackColor = false;
-            //this.btnAnadir.Click += new System.EventHandler(this.btnAnadir_Click);
+            this.btnAnadir.Click += new System.EventHandler(this.btnAnadir_Click);
             // 
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(883, 506);
+            this.button1.Location = new System.Drawing.Point(757, 439);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(64, 20);
             this.button1.TabIndex = 4;
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
-            //this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // tcVistaPrincipal
             // 
-            this.tcVistaPrincipal.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.tcVistaPrincipal.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tcVistaPrincipal.Controls.Add(this.tabPage1);
             this.tcVistaPrincipal.Controls.Add(this.tabPage2);
-            this.tcVistaPrincipal.Location = new System.Drawing.Point(0, 27);
+            this.tcVistaPrincipal.Location = new System.Drawing.Point(0, 23);
             this.tcVistaPrincipal.Name = "tcVistaPrincipal";
             this.tcVistaPrincipal.SelectedIndex = 0;
-            this.tcVistaPrincipal.Size = new System.Drawing.Size(1036, 457);
+            this.tcVistaPrincipal.Size = new System.Drawing.Size(888, 396);
             this.tcVistaPrincipal.TabIndex = 5;
             // 
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.flpConjunto);
-            this.tabPage1.Location = new System.Drawing.Point(4, 24);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1028, 429);
+            this.tabPage1.Size = new System.Drawing.Size(880, 370);
             this.tabPage1.TabIndex = 2;
             this.tabPage1.Text = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -138,16 +139,16 @@ namespace ProyectoDintNuno
             this.flpConjunto.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flpConjunto.Location = new System.Drawing.Point(3, 3);
             this.flpConjunto.Name = "flpConjunto";
-            this.flpConjunto.Size = new System.Drawing.Size(1022, 423);
+            this.flpConjunto.Size = new System.Drawing.Size(874, 364);
             this.flpConjunto.TabIndex = 0;
             // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.dgvPrincipal);
-            this.tabPage2.Location = new System.Drawing.Point(4, 24);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1028, 429);
+            this.tabPage2.Size = new System.Drawing.Size(880, 370);
             this.tabPage2.TabIndex = 3;
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -175,7 +176,7 @@ namespace ProyectoDintNuno
             this.dgvPrincipal.Name = "dgvPrincipal";
             this.dgvPrincipal.ReadOnly = true;
             this.dgvPrincipal.RowTemplate.Height = 50;
-            this.dgvPrincipal.Size = new System.Drawing.Size(1022, 423);
+            this.dgvPrincipal.Size = new System.Drawing.Size(874, 364);
             this.dgvPrincipal.TabIndex = 0;
             // 
             // ColumnID
@@ -251,16 +252,15 @@ namespace ProyectoDintNuno
             // 
             // VistaPrincipal
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1045, 538);
+            this.ClientSize = new System.Drawing.Size(896, 466);
             this.Controls.Add(this.tcVistaPrincipal);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnAnadir);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "VistaPrincipal";
-            this.Text = " ";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.tcVistaPrincipal.ResumeLayout(false);
