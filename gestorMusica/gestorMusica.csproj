@@ -48,22 +48,34 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="VistaPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="VistaPrincipal.Designer.cs">
+      <DependentUpon>VistaPrincipal.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form2.cs">
+    <Compile Include="VistaAdd.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form2.Designer.cs">
-      <DependentUpon>Form2.cs</DependentUpon>
+    <Compile Include="VistaAdd.Designer.cs">
+      <DependentUpon>VistaAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VistaAmpliada.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VistaAmpliada.Designer.cs">
+      <DependentUpon>VistaAmpliada.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="VistaAmpliada.resx">
+      <DependentUpon>VistaAmpliada.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VistaPrincipal.resx">
+      <DependentUpon>VistaPrincipal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VistaAdd.resx">
+      <DependentUpon>VistaAdd.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

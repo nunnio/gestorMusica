@@ -64,7 +64,7 @@ namespace ProyectoDintNuno
             // lblImage
             // 
             this.lblImage.AutoSize = true;
-            this.lblImage.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblImage.Font = new System.Drawing.Font("Segoe UI", 13F);
             this.lblImage.Location = new System.Drawing.Point(13, 9);
             this.lblImage.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblImage.Name = "lblImage";
@@ -75,7 +75,7 @@ namespace ProyectoDintNuno
             // lblCabecera
             // 
             this.lblCabecera.AutoSize = true;
-            this.lblCabecera.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblCabecera.Font = new System.Drawing.Font("Segoe UI", 15F);
             this.lblCabecera.Location = new System.Drawing.Point(240, 6);
             this.lblCabecera.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCabecera.Name = "lblCabecera";
@@ -85,7 +85,7 @@ namespace ProyectoDintNuno
             // 
             // btnExplore
             // 
-            this.btnExplore.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnExplore.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.btnExplore.Location = new System.Drawing.Point(138, 8);
             this.btnExplore.Margin = new System.Windows.Forms.Padding(4);
             this.btnExplore.Name = "btnExplore";
@@ -97,11 +97,10 @@ namespace ProyectoDintNuno
             // 
             // tbName
             // 
-            this.tbName.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.tbName.Font = new System.Drawing.Font("Segoe UI", 12.75F);
             this.tbName.Location = new System.Drawing.Point(240, 38);
             this.tbName.Margin = new System.Windows.Forms.Padding(4);
             this.tbName.Name = "tbName";
-            //this.tbName.PlaceholderText = "Name *";
             this.tbName.Size = new System.Drawing.Size(228, 30);
             this.tbName.TabIndex = 8;
             this.tbName.Tag = "";
@@ -109,11 +108,10 @@ namespace ProyectoDintNuno
             // 
             // tbArtist
             // 
-            this.tbArtist.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.tbArtist.Font = new System.Drawing.Font("Segoe UI", 12.75F);
             this.tbArtist.Location = new System.Drawing.Point(240, 76);
             this.tbArtist.Margin = new System.Windows.Forms.Padding(4);
             this.tbArtist.Name = "tbArtist";
-            //this.tbArtist.PlaceholderText = "Principal artist *";
             this.tbArtist.Size = new System.Drawing.Size(228, 30);
             this.tbArtist.TabIndex = 9;
             this.tbArtist.Tag = "";
@@ -121,23 +119,21 @@ namespace ProyectoDintNuno
             // 
             // tbSecArtist
             // 
-            this.tbSecArtist.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.tbSecArtist.Font = new System.Drawing.Font("Segoe UI", 12.75F);
             this.tbSecArtist.Location = new System.Drawing.Point(240, 114);
             this.tbSecArtist.Margin = new System.Windows.Forms.Padding(4);
             this.tbSecArtist.Name = "tbSecArtist";
-            //this.tbSecArtist.PlaceholderText = "Secundary asrtist";
             this.tbSecArtist.Size = new System.Drawing.Size(228, 30);
             this.tbSecArtist.TabIndex = 10;
             this.tbSecArtist.Tag = "";
             // 
             // tbDescription
             // 
-            this.tbDescription.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.tbDescription.Font = new System.Drawing.Font("Segoe UI", 12.75F);
             this.tbDescription.Location = new System.Drawing.Point(474, 151);
             this.tbDescription.Margin = new System.Windows.Forms.Padding(4);
             this.tbDescription.Multiline = true;
             this.tbDescription.Name = "tbDescription";
-            //this.tbDescription.PlaceholderText = "Description";
             this.tbDescription.Size = new System.Drawing.Size(228, 115);
             this.tbDescription.TabIndex = 11;
             this.tbDescription.Tag = "";
@@ -145,7 +141,7 @@ namespace ProyectoDintNuno
             // cbFormat
             // 
             this.cbFormat.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbFormat.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.cbFormat.Font = new System.Drawing.Font("Segoe UI", 12.75F);
             this.cbFormat.FormattingEnabled = true;
             this.cbFormat.Items.AddRange(new object[] {
             "CD",
@@ -160,7 +156,7 @@ namespace ProyectoDintNuno
             // cbType
             // 
             this.cbType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbType.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.cbType.Font = new System.Drawing.Font("Segoe UI", 12.75F);
             this.cbType.FormattingEnabled = true;
             this.cbType.Items.AddRange(new object[] {
             "Album",
@@ -180,7 +176,7 @@ namespace ProyectoDintNuno
             // 
             // dtpAdquisition
             // 
-            this.dtpAdquisition.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.dtpAdquisition.Font = new System.Drawing.Font("Segoe UI", 12.75F);
             this.dtpAdquisition.Location = new System.Drawing.Point(474, 39);
             this.dtpAdquisition.Name = "dtpAdquisition";
             this.dtpAdquisition.Size = new System.Drawing.Size(228, 30);
@@ -189,7 +185,7 @@ namespace ProyectoDintNuno
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnCancel.Font = new System.Drawing.Font("Segoe UI", 12.75F);
             this.btnCancel.Location = new System.Drawing.Point(590, 279);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(112, 34);
@@ -199,7 +195,7 @@ namespace ProyectoDintNuno
             // 
             // btnAccept
             // 
-            this.btnAccept.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnAccept.Font = new System.Drawing.Font("Segoe UI", 12.75F);
             this.btnAccept.Location = new System.Drawing.Point(474, 279);
             this.btnAccept.Name = "btnAccept";
             this.btnAccept.Size = new System.Drawing.Size(110, 34);
@@ -210,7 +206,7 @@ namespace ProyectoDintNuno
             // 
             // dtpEdition
             // 
-            this.dtpEdition.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.dtpEdition.Font = new System.Drawing.Font("Segoe UI", 12.75F);
             this.dtpEdition.Location = new System.Drawing.Point(474, 114);
             this.dtpEdition.Name = "dtpEdition";
             this.dtpEdition.Size = new System.Drawing.Size(228, 30);
@@ -218,11 +214,10 @@ namespace ProyectoDintNuno
             // 
             // tbGenre
             // 
-            this.tbGenre.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.tbGenre.Font = new System.Drawing.Font("Segoe UI", 12.75F);
             this.tbGenre.Location = new System.Drawing.Point(240, 152);
             this.tbGenre.Margin = new System.Windows.Forms.Padding(4);
             this.tbGenre.Name = "tbGenre";
-            //this.tbGenre.PlaceholderText = "Genre";
             this.tbGenre.Size = new System.Drawing.Size(228, 30);
             this.tbGenre.TabIndex = 18;
             this.tbGenre.Tag = "";
@@ -230,7 +225,7 @@ namespace ProyectoDintNuno
             // lblAdquisition
             // 
             this.lblAdquisition.AutoSize = true;
-            this.lblAdquisition.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblAdquisition.Font = new System.Drawing.Font("Segoe UI", 13F);
             this.lblAdquisition.Location = new System.Drawing.Point(474, 11);
             this.lblAdquisition.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblAdquisition.Name = "lblAdquisition";
@@ -241,7 +236,7 @@ namespace ProyectoDintNuno
             // lblEdition
             // 
             this.lblEdition.AutoSize = true;
-            this.lblEdition.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblEdition.Font = new System.Drawing.Font("Segoe UI", 13F);
             this.lblEdition.Location = new System.Drawing.Point(474, 79);
             this.lblEdition.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblEdition.Name = "lblEdition";
@@ -252,7 +247,7 @@ namespace ProyectoDintNuno
             // lblFormat
             // 
             this.lblFormat.AutoSize = true;
-            this.lblFormat.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblFormat.Font = new System.Drawing.Font("Segoe UI", 13F);
             this.lblFormat.Location = new System.Drawing.Point(240, 186);
             this.lblFormat.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblFormat.Name = "lblFormat";
@@ -263,7 +258,7 @@ namespace ProyectoDintNuno
             // lblType
             // 
             this.lblType.AutoSize = true;
-            this.lblType.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblType.Font = new System.Drawing.Font("Segoe UI", 13F);
             this.lblType.Location = new System.Drawing.Point(240, 250);
             this.lblType.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblType.Name = "lblType";
@@ -296,7 +291,7 @@ namespace ProyectoDintNuno
             this.Controls.Add(this.lblCabecera);
             this.Controls.Add(this.lblImage);
             this.Controls.Add(this.pbImage);
-            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "VistaAnadir";
             this.Text = "VistaAnadir";
