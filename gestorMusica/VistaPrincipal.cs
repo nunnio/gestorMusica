@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using gestorMusica;
 using MySql.Data.MySqlClient;
 using static System.Net.Mime.MediaTypeNames;
 
@@ -16,8 +17,17 @@ namespace ProyectoDintNuno
     public partial class VistaPrincipal : Form
     {
         private int Contador = 1;
-        
 
+        public string Name;
+        public string PArtist;
+        public string SArtist;
+        public string Genre;
+        public string Format;
+        public string Type;
+        public DateTime AdDate;
+        public DateTime EdDate;
+        public string Description;
+        public System.Drawing.Image Image { get; set; }
         public VistaPrincipal()
         {
             InitializeComponent();
@@ -153,6 +163,8 @@ namespace ProyectoDintNuno
                 
                 Contador++;
 
+                
+
                 subeDatos(row, img, fechas);
 
                 // Cómo poner el evento Click a un pictureBox que creo
@@ -166,10 +178,10 @@ namespace ProyectoDintNuno
         }
         private void muestraInfo(object sender, EventArgs e)
         {
-            VistaAnadir form = new VistaAnadir();
+            VistaAmpliada form = new VistaAmpliada();
             if (form.ShowDialog() == DialogResult.OK)
             {
-
+                
             }
         }
         private void subeDatos(string[] row, System.Drawing.Image img, DateTime[] fechas)

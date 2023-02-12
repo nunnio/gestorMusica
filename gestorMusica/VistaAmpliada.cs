@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProyectoDintNuno;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,11 +11,17 @@ using System.Windows.Forms;
 
 namespace gestorMusica
 {
-    public partial class Form3 : Form
+    public partial class VistaAmpliada : Form
     {
-        public Form3()
+        public VistaAmpliada()
         {
             InitializeComponent();
+        }
+        private void VistaAmpliada_Load(object sender, System.EventArgs e)
+        {
+            VistaPrincipal form = new VistaPrincipal();
+            lblNombre.Text = form.Name;
+            lblArtista.Text = form.PArtist;
         }
     }
 }
