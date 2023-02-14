@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,10 +32,17 @@ namespace ProyectoDintNuno
         public VistaPrincipal()
         {
             InitializeComponent();
+            bajaDatos();
         }
 
-        private void Form1_Load(object sender, System.EventArgs e)
+        private void VistaPrincipal_Load(object sender, System.EventArgs e)
         {
+            
+            
+        }
+        private void bajaDatos()
+        {
+            String sql = "Select * FROM productos WHERE id >= @id;";
             MySqlConnectionStringBuilder builder = new MySqlConnectionStringBuilder();
             builder.Server = "localhost";
             builder.UserID = "root";
@@ -43,8 +51,12 @@ namespace ProyectoDintNuno
 
             MySqlConnection conn = new MySqlConnection(builder.ToString());
             MySqlCommand cmd = conn.CreateCommand();
-            MySqlDataReader reader;
-            reader = cmd.ExecuteReader();
+            cmd = new MySqlCommand(sql, conn);
+            cmd.Parameters.Add("@id", MySqlDbType.Text).Value = 1;
+
+            conn.Open();
+            MySqlDataReader reader =  cmd.ExecuteReader(); 
+            //reader =
             while (reader.Read())
             {
                 /*string[] row = new string[8];
@@ -72,6 +84,7 @@ namespace ProyectoDintNuno
                 PictureBox pb = new PictureBox();
                 Label lblName = new Label();
                 Label lblArtist = new Label();
+                byte[] caratula;
 
                 lblName.Text = (String)reader[1];
                 lblName.Font = new Font("Segoe UI", 16);
@@ -87,12 +100,13 @@ namespace ProyectoDintNuno
                 //lblArtist.BackColor = Color.White;
                 lblArtist.Margin = new Padding(2, 5, 0, 0);
 
-                pb.Image = (System.Drawing.Image)reader[10];
+                caratula = (byte[])reader[10];
+                pb.Image = convierteAImg(caratula);
+                //pb.Image = (Bitmap)caratula;
                 pb.SizeMode = PictureBoxSizeMode.Zoom;
                 pb.MinimumSize = new Size(180, 180);
                 pb.MaximumSize = new Size(180, 180);
                 //pb.BackColor = Color.Gray;
-                flpConjunto.Controls.Add(panel);
 
                 panel.Controls.Add(pb);
                 panel.Controls.Add(lblName);
@@ -100,8 +114,43 @@ namespace ProyectoDintNuno
                 //panel.BackColor = Color.Red;
                 panel.MinimumSize = new Size(185, 250);
                 panel.MaximumSize = new Size(185, 300);
+
+                flpConjunto.Controls.Add(panel);
             }
         }
+        private System.Drawing.Image convierteAImg(byte[] caratula)
+        {
+            System.Drawing.Image image;
+                MemoryStream ms = new MemoryStream(caratula, 0, caratula.Length);
+                ms.Write(caratula, 0, caratula.Length);
+                //image = System.Drawing.Image.FromStream(ms, true); 
+                return System.Drawing.Image.FromStream(ms, true);
+        }
+        /*
+        /// <summary>
+        /// Method that uses the ImageConverter object in .Net Framework to convert a byte array, 
+        /// presumably containing a JPEG or PNG file image, into a Bitmap object, which can also be 
+        /// used as an Image object.
+        /// </summary>
+        /// <param name="byteArray">byte array containing JPEG or PNG file image or similar</param>
+        /// <returns>Bitmap object if it works, else exception is thrown</returns>
+        public static Bitmap GetImageFromByteArray(byte[] byteArray)
+        {
+            Bitmap bm = (Bitmap)_imageConverter.ConvertFrom(byteArray);
+
+            if (bm != null && (bm.HorizontalResolution != (int)bm.HorizontalResolution ||
+                               bm.VerticalResolution != (int)bm.VerticalResolution))
+            {
+                // Correct a strange glitch that has been observed in the test program when converting 
+                //  from a PNG file image created by CopyImageToByteArray() - the dpi value "drifts" 
+                //  slightly away from the nominal integer value
+                bm.SetResolution((int)(bm.HorizontalResolution + 0.5f),
+                                 (int)(bm.VerticalResolution + 0.5f));
+            }
+
+            return bm;
+        }*/
+
 
         private void btnAnadir_Click(object sender, EventArgs e)
         {
@@ -161,20 +210,14 @@ namespace ProyectoDintNuno
                 dgvPrincipal.Rows[dgvPrincipal.Rows.Count - 1].Cells["cAdDate"].Value = fechas[0];
                 dgvPrincipal.Rows[dgvPrincipal.Rows.Count - 1].Cells["cEdDate"].Value = fechas[1];
                 
-                Contador++;
-
-                
+                Contador++;                
 
                 subeDatos(row, img, fechas);
-
                 // Cómo poner el evento Click a un pictureBox que creo
                 pb.Click += new System.EventHandler(muestraInfo);
 
-            
-            
                 //imgPictureBox.Click += (o, a) => { // código };
-
-}
+            }
         }
         private void muestraInfo(object sender, EventArgs e)
         {
@@ -221,7 +264,7 @@ namespace ProyectoDintNuno
             }
             catch (MySqlException ex)
             {
-                MessageBox.Show("Error en conexión a base de datos\nFallo en conexión");
+                MessageBox.Show("Error en conexión a base de datos\nFallo en conexión\n"+ex.Message);
             }
             catch (Exception ex)
             {

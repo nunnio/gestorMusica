@@ -48,6 +48,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="TextBoxPersonalizado.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TextBoxPersonalizado.Designer.cs">
+      <DependentUpon>TextBoxPersonalizado.cs</DependentUpon>
+    </Compile>
     <Compile Include="VistaPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
