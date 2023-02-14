@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -28,6 +29,8 @@ namespace ProyectoDintNuno
         public DateTime AdDate;
         public DateTime EdDate;
         public string Description;
+        private System.Drawing.Image image;
+
         public System.Drawing.Image Image { get; set; }
         public VistaPrincipal()
         {
@@ -37,8 +40,7 @@ namespace ProyectoDintNuno
 
         private void VistaPrincipal_Load(object sender, System.EventArgs e)
         {
-            
-            
+
         }
         private void bajaDatos()
         {
@@ -56,7 +58,7 @@ namespace ProyectoDintNuno
 
             conn.Open();
             MySqlDataReader reader =  cmd.ExecuteReader(); 
-            //reader =
+            
             while (reader.Read())
             {
                 /*string[] row = new string[8];
@@ -101,7 +103,8 @@ namespace ProyectoDintNuno
                 lblArtist.Margin = new Padding(2, 5, 0, 0);
 
                 caratula = (byte[])reader[10];
-                pb.Image = convierteAImg(caratula);
+                System.Drawing.Image img = convierteAImg(caratula);
+                pb.Image = img;
                 //pb.Image = (Bitmap)caratula;
                 pb.SizeMode = PictureBoxSizeMode.Zoom;
                 pb.MinimumSize = new Size(180, 180);
@@ -116,27 +119,23 @@ namespace ProyectoDintNuno
                 panel.MaximumSize = new Size(185, 300);
 
                 flpConjunto.Controls.Add(panel);
+
+                string n = Name;
+                panel.Click += new System.EventHandler(muestraInfo);
             }
         }
-        private System.Drawing.Image convierteAImg(byte[] caratula)
+        public System.Drawing.Image convierteAImg(byte[] caratula)
         {
-            System.Drawing.Image image;
-                MemoryStream ms = new MemoryStream(caratula, 0, caratula.Length);
-                ms.Write(caratula, 0, caratula.Length);
-                //image = System.Drawing.Image.FromStream(ms, true); 
-                return System.Drawing.Image.FromStream(ms, true);
-        }
-        /*
-        /// <summary>
-        /// Method that uses the ImageConverter object in .Net Framework to convert a byte array, 
-        /// presumably containing a JPEG or PNG file image, into a Bitmap object, which can also be 
-        /// used as an Image object.
-        /// </summary>
-        /// <param name="byteArray">byte array containing JPEG or PNG file image or similar</param>
-        /// <returns>Bitmap object if it works, else exception is thrown</returns>
-        public static Bitmap GetImageFromByteArray(byte[] byteArray)
-        {
-            Bitmap bm = (Bitmap)_imageConverter.ConvertFrom(byteArray);
+            try { 
+                image = (System.Drawing.Image)new ImageConverter().ConvertFrom(caratula);
+            }
+            catch { }
+            return image;
+
+
+
+            /* 
+            Bitmap bm = (Bitmap)new ImageConverter().ConvertFrom(caratula);
 
             if (bm != null && (bm.HorizontalResolution != (int)bm.HorizontalResolution ||
                                bm.VerticalResolution != (int)bm.VerticalResolution))
@@ -148,9 +147,14 @@ namespace ProyectoDintNuno
                                  (int)(bm.VerticalResolution + 0.5f));
             }
 
-            return bm;
-        }*/
+            return bm;*/
+            /*
+                MemoryStream ms = new MemoryStream(caratula);
+                System.Drawing.Image returnImage = System.Drawing.Image.FromStream(ms);
+                return (Bitmap)returnImage;
+            */
 
+        }
 
         private void btnAnadir_Click(object sender, EventArgs e)
         {
@@ -213,17 +217,19 @@ namespace ProyectoDintNuno
                 Contador++;                
 
                 subeDatos(row, img, fechas);
-                // Cómo poner el evento Click a un pictureBox que creo
-                pb.Click += new System.EventHandler(muestraInfo);
 
-                //imgPictureBox.Click += (o, a) => { // código };
+                panel.Click += new System.EventHandler(muestraInfo);
+
+                
             }
         }
         private void muestraInfo(object sender, EventArgs e)
         {
+            
             VistaAmpliada form = new VistaAmpliada();
             if (form.ShowDialog() == DialogResult.OK)
             {
+                //Name = btnAnadir_Click.row[1];
                 
             }
         }
