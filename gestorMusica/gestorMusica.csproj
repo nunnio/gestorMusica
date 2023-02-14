@@ -48,6 +48,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MiTBPersonalizado.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MiTBPersonalizado.Designer.cs">
+      <DependentUpon>MiTBPersonalizado.cs</DependentUpon>
+    </Compile>
     <Compile Include="TextBoxPersonalizado.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -74,6 +80,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="MiTBPersonalizado.resx">
+      <DependentUpon>MiTBPersonalizado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TextBoxPersonalizado.resx">
+      <DependentUpon>TextBoxPersonalizado.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="VistaAmpliada.resx">
       <DependentUpon>VistaAmpliada.cs</DependentUpon>
     </EmbeddedResource>

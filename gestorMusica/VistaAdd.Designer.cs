@@ -269,7 +269,7 @@ namespace ProyectoDintNuno
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(712, 321);
+            this.ClientSize = new System.Drawing.Size(712, 403);
             this.Controls.Add(this.lblType);
             this.Controls.Add(this.lblFormat);
             this.Controls.Add(this.lblEdition);

@@ -10,66 +10,103 @@ using System.Windows.Forms;
 
 namespace gestorMusica
 {
-    public partial class TextBoxPersonalizado : Control
+    public partial class TextBoxPersonalizado: Control
     {
+        private TextBox tb;
+        private Color hintColor = Color.DarkGray;
+        private string hintText;
+        private bool esHint;
+        private bool estaFocus = false;
         public TextBoxPersonalizado()
         {
-            GotFocus += removePlaceHolder;
-            LostFocus += setPlaceholder;
             InitializeComponent();
+            tb = new TextBox();
+            tb.Dock= DockStyle.Fill;
+            //tb.BorderStyle= BorderStyle.None;
+            tb.Anchor= AnchorStyles.Left;
+            tb.Anchor= AnchorStyles.Right;
+            tb.Anchor= AnchorStyles.Top;
+            tb.Anchor= AnchorStyles.Bottom;
+            this.Controls.Add(tb);
         }
-
-        bool esHint = true;
-        string hintText;
-        public string HintText
+        [Category("Data")]
+        public string textos
         {
-            get { return hintText; }
+            get
+            {
+                if (esHint) return "";
+                else return tb.Text;
+            }
             set
             {
-                hintText = value;
+                tb.Text = value;
                 setHint();
             }
         }
 
-        public new string Text
+        public Color HintColor{
+            get
+            {
+                return hintColor;
+            }
+            set
+            {
+                hintColor = value;
+                
+            }
+        }
+        public string HintText
         {
-            get => esHint ? string.Empty : base.Text;
-            set => base.Text = value;
+            get
+            {
+                return hintText;
+            } 
+            set
+            {
+                hintText = value;
+                tb.Text = "";
+                setHint();
+            }
+        
         }
 
-        // Cuando el control no tiene el focus, el hint se muestra
         private void setHint()
         {
-            if (string.IsNullOrEmpty(base.Text))
+            if(string.IsNullOrEmpty(tb.Text) && hintText != "")
             {
-                base.Text = hintText;
-                this.ForeColor = Color.Gray;
-                this.Font = new Font(this.Font, FontStyle.Italic);
                 esHint = true;
+                tb.Text = hintText;
+                tb.ForeColor = hintColor;
+
             }
         }
-
-        // Cuanod el control tiene el focus, el hint se borra
-        private void removePlaceHolder()
+        private void borraHint()
         {
-
-            if (esHint)
+            if (esHint && hintText != "")
             {
-                base.Text = "";
-                this.ForeColor = System.Drawing.SystemColors.WindowText;
-                this.Font = new Font(this.Font, FontStyle.Regular);
                 esHint = false;
+                tb.Text = "";
+                tb.ForeColor = this.ForeColor;
             }
         }
 
-        private void setPlaceholder(object sender, EventArgs e)
+        protected override void OnPaint(PaintEventArgs pe)
         {
-            setHint();
-        }
+            base.OnPaint(pe);
 
-        private void removePlaceHolder(object sender, EventArgs e)
+        }
+        
+        private void tb_Enter(object sender, EventArgs e)
         {
-            removePlaceHolder();
+            estaFocus= true;
+            this.Invalidate();
+            borraHint();
+        }
+        private void tb_Leave(object sender, EventArgs e)
+        {
+            estaFocus= false;
+            this.Invalidate();
+            setHint();
         }
     }
 }

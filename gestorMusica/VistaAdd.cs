@@ -89,6 +89,11 @@ namespace ProyectoDintNuno
             }
         }
 
+        private void textBoxPersonalizado1_Click(object sender, EventArgs e)
+        {
+
+        }
+
         /*private void borraHint(object sender, EventArgs e, string s)
         {
             

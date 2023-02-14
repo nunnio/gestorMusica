@@ -38,7 +38,7 @@ namespace gestorMusica
             this.lblTEdDate = new System.Windows.Forms.Label();
             this.lblTDescription = new System.Windows.Forms.Label();
             this.tbDescription = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnClose = new System.Windows.Forms.Button();
             this.tbGenre = new System.Windows.Forms.TextBox();
             this.tbSArtist = new System.Windows.Forms.TextBox();
             this.tbPArtist = new System.Windows.Forms.TextBox();
@@ -47,6 +47,8 @@ namespace gestorMusica
             this.cbType = new System.Windows.Forms.ComboBox();
             this.dtpAdDate = new System.Windows.Forms.DateTimePicker();
             this.dtpEdDate = new System.Windows.Forms.DateTimePicker();
+            this.btnModify = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbImage)).BeginInit();
             this.SuspendLayout();
             // 
@@ -138,15 +140,15 @@ namespace gestorMusica
             this.tbDescription.Size = new System.Drawing.Size(371, 122);
             this.tbDescription.TabIndex = 16;
             // 
-            // button1
+            // btnClose
             // 
-            this.button1.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.button1.Location = new System.Drawing.Point(582, 351);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(92, 41);
-            this.button1.TabIndex = 17;
-            this.button1.Text = "Close";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnClose.Location = new System.Drawing.Point(582, 351);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(92, 41);
+            this.btnClose.TabIndex = 17;
+            this.btnClose.Text = "Close";
+            this.btnClose.UseVisualStyleBackColor = true;
             // 
             // tbGenre
             // 
@@ -222,11 +224,33 @@ namespace gestorMusica
             this.dtpEdDate.Size = new System.Drawing.Size(202, 24);
             this.dtpEdDate.TabIndex = 29;
             // 
+            // btnModify
+            // 
+            this.btnModify.Location = new System.Drawing.Point(484, 351);
+            this.btnModify.Name = "btnModify";
+            this.btnModify.Size = new System.Drawing.Size(92, 41);
+            this.btnModify.TabIndex = 30;
+            this.btnModify.Text = "Modify";
+            this.btnModify.UseVisualStyleBackColor = true;
+            this.btnModify.Click += new System.EventHandler(this.btnModify_Click);
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnDelete.Location = new System.Drawing.Point(386, 351);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(92, 41);
+            this.btnDelete.TabIndex = 31;
+            this.btnDelete.Text = "Delete";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            // 
             // VistaAmpliada
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(686, 404);
+            this.Controls.Add(this.btnDelete);
+            this.Controls.Add(this.btnModify);
             this.Controls.Add(this.dtpEdDate);
             this.Controls.Add(this.dtpAdDate);
             this.Controls.Add(this.cbType);
@@ -235,7 +259,7 @@ namespace gestorMusica
             this.Controls.Add(this.tbPArtist);
             this.Controls.Add(this.tbSArtist);
             this.Controls.Add(this.tbGenre);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnClose);
             this.Controls.Add(this.tbDescription);
             this.Controls.Add(this.lblTDescription);
             this.Controls.Add(this.lblTEdDate);
@@ -264,7 +288,7 @@ namespace gestorMusica
         private System.Windows.Forms.Label lblTEdDate;
         private System.Windows.Forms.Label lblTDescription;
         private System.Windows.Forms.TextBox tbDescription;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.TextBox tbGenre;
         private System.Windows.Forms.TextBox tbSArtist;
         private System.Windows.Forms.TextBox tbPArtist;
@@ -273,5 +297,7 @@ namespace gestorMusica
         private System.Windows.Forms.ComboBox cbType;
         private System.Windows.Forms.DateTimePicker dtpAdDate;
         private System.Windows.Forms.DateTimePicker dtpEdDate;
+        private System.Windows.Forms.Button btnModify;
+        private System.Windows.Forms.Button btnDelete;
     }
 }

@@ -120,8 +120,11 @@ namespace ProyectoDintNuno
 
                 flpConjunto.Controls.Add(panel);
 
-                string n = Name;
-                panel.Click += new System.EventHandler(muestraInfo);
+                Name = lblName.Text;
+
+                pb.Click += new System.EventHandler(muestraInfo);
+
+
             }
         }
         public System.Drawing.Image convierteAImg(byte[] caratula)
@@ -214,11 +217,13 @@ namespace ProyectoDintNuno
                 dgvPrincipal.Rows[dgvPrincipal.Rows.Count - 1].Cells["cAdDate"].Value = fechas[0];
                 dgvPrincipal.Rows[dgvPrincipal.Rows.Count - 1].Cells["cEdDate"].Value = fechas[1];
                 
-                Contador++;                
+                Contador++;
+
+                
 
                 subeDatos(row, img, fechas);
 
-                panel.Click += new System.EventHandler(muestraInfo);
+                pb.Click += new System.EventHandler(muestraInfo);
 
                 
             }
@@ -229,7 +234,7 @@ namespace ProyectoDintNuno
             VistaAmpliada form = new VistaAmpliada();
             if (form.ShowDialog() == DialogResult.OK)
             {
-                //Name = btnAnadir_Click.row[1];
+                form.Name = Name;
                 
             }
         }
@@ -278,7 +283,9 @@ namespace ProyectoDintNuno
                 Console.WriteLine(ex.Message);
             }
         }
-    }    
+
+        
+    }
 }
 /*CREATE TABLE productos (
     id int PRIMARY KEY,

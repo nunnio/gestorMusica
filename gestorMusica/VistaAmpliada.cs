@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -22,6 +23,7 @@ namespace gestorMusica
         {
             InitializeComponent();
             bajaDatos();
+            
         }
         private void VistaAmpliada_Load(object sender, System.EventArgs e)
         {
@@ -41,7 +43,7 @@ namespace gestorMusica
             MySqlConnection conn = new MySqlConnection(builder.ToString());
             MySqlCommand cmd = conn.CreateCommand();
             cmd = new MySqlCommand(sql, conn);
-            cmd.Parameters.Add("@name", MySqlDbType.Text).Value = form.Name.ToString;
+            cmd.Parameters.Add("@name", MySqlDbType.Text).Value = "Together power";
             cmd.Parameters.Add("@partist", MySqlDbType.Text).Value = "Green Turtle";
 
             conn.Open();
@@ -71,6 +73,112 @@ namespace gestorMusica
             }
             catch { }
             return image;
+        }
+
+        private void btnModify_Click(object sender, EventArgs e)
+        {
+            
+            tbName.Enabled = true;
+            tbPArtist.Enabled = true;
+            tbSArtist.Enabled = true;
+            tbGenre.Enabled = true;
+            cbFormat.Enabled = true;
+            cbType.Enabled = true;
+            dtpAdDate.Enabled = true;
+            dtpEdDate.Enabled = true;
+            tbDescription.Enabled = true;
+
+            btnModify.Text = "Save";
+            btnClose.Text= "Cancel";
+            btnModify.DialogResult = DialogResult.OK;
+
+
+            if(DialogResult == DialogResult.Cancel)
+            {
+                tbName.Enabled = false;
+                tbPArtist.Enabled = false;
+                tbSArtist.Enabled = false;
+                tbGenre.Enabled = false;
+                cbFormat.Enabled = false;
+                cbType.Enabled = false;
+                dtpAdDate.Enabled = false;
+                dtpEdDate.Enabled = false;
+                tbDescription.Enabled = false;
+            }
+            if(DialogResult == DialogResult.OK) 
+            {
+                tbName.Enabled = false;
+                tbPArtist.Enabled = false;
+                tbSArtist.Enabled = false;
+                tbGenre.Enabled = false;
+                cbFormat.Enabled = false;
+                cbType.Enabled = false;
+                dtpAdDate.Enabled = false;
+                dtpEdDate.Enabled = false;
+                tbDescription.Enabled = false;
+
+
+                string[] row = new string[8];
+                DateTime[] fechas = new DateTime[2];
+                row[1] = tbName.Text;
+                row[2] = tbPArtist.Text;
+                row[3] = tbSArtist.Text;
+                row[4] = tbGenre.Text;
+                row[5] = cbFormat.Text;
+                row[6] = cbType.Text;
+                row[7] = tbDescription.Text;
+                fechas[0] = dtpAdDate.Value;
+                fechas[1] = dtpEdDate.Value;
+
+                System.Drawing.Image img = pbImage.Image;
+
+                subeDatos(row, img, fechas);
+            }
+        }
+        private void subeDatos(string[] row, System.Drawing.Image img, DateTime[] fechas)
+        {
+            MySqlConnectionStringBuilder builder = new MySqlConnectionStringBuilder();
+            builder.Server = "localhost";
+            builder.UserID = "root";
+            builder.Password = "";
+            builder.Database = "enclavedb";
+
+            MySqlConnection conn = new MySqlConnection(builder.ToString());
+            MySqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "INSERT INTO productos (id, name, partist, sartist, genre, format, type, addate, eddate, description, image) value " +
+                "(@id, @name, @partist, @sartist, @genre, @format, @type, @addate, @eddate, @description, @image)";
+
+            cmd.Parameters.AddWithValue("@id", row[0]);
+            cmd.Parameters.AddWithValue("@name", row[1]);
+            cmd.Parameters.AddWithValue("@partist", row[2]);
+            cmd.Parameters.AddWithValue("@sartist", row[3]);
+            cmd.Parameters.AddWithValue("@genre", row[4]);
+            cmd.Parameters.AddWithValue("@format", row[5]);
+            cmd.Parameters.AddWithValue("@type", row[6]);
+            cmd.Parameters.AddWithValue("@description", row[7]);
+            cmd.Parameters.AddWithValue("@addate", fechas[0]);
+            cmd.Parameters.AddWithValue("@eddate", fechas[1]);
+            cmd.Parameters.AddWithValue("@image", img);
+            try
+            {
+                conn.Open();
+                //...
+                cmd.ExecuteNonQuery();
+
+                /*Int32 rowsAffected = cmd.ExecuteNonQuery();
+                Console.WriteLine("RowsAffected: {0}", rowsAffected);*/
+
+                conn.Close(); //La conexión hay que cerrarla siempre al terminar
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("Error en conexión a base de datos\nFallo en conexión\n" + ex.Message);
+            }
+            catch (Exception ex)
+            {
+                ex.ToString();
+                Console.WriteLine(ex.Message);
+            }
         }
     }
 }
