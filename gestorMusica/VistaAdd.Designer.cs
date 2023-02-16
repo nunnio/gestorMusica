@@ -29,6 +29,7 @@ namespace ProyectoDintNuno
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VistaAnadir));
             this.pbImage = new System.Windows.Forms.PictureBox();
             this.lblImage = new System.Windows.Forms.Label();
             this.lblCabecera = new System.Windows.Forms.Label();
@@ -65,6 +66,7 @@ namespace ProyectoDintNuno
             // 
             this.lblImage.AutoSize = true;
             this.lblImage.Font = new System.Drawing.Font("Segoe UI", 13F);
+            this.lblImage.ForeColor = System.Drawing.SystemColors.Window;
             this.lblImage.Location = new System.Drawing.Point(13, 9);
             this.lblImage.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblImage.Name = "lblImage";
@@ -76,6 +78,7 @@ namespace ProyectoDintNuno
             // 
             this.lblCabecera.AutoSize = true;
             this.lblCabecera.Font = new System.Drawing.Font("Segoe UI", 15F);
+            this.lblCabecera.ForeColor = System.Drawing.SystemColors.Window;
             this.lblCabecera.Location = new System.Drawing.Point(240, 6);
             this.lblCabecera.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCabecera.Name = "lblCabecera";
@@ -85,14 +88,16 @@ namespace ProyectoDintNuno
             // 
             // btnExplore
             // 
+            this.btnExplore.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(192)))), ((int)(((byte)(217)))));
+            this.btnExplore.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExplore.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.btnExplore.Location = new System.Drawing.Point(138, 8);
             this.btnExplore.Margin = new System.Windows.Forms.Padding(4);
             this.btnExplore.Name = "btnExplore";
             this.btnExplore.Size = new System.Drawing.Size(89, 26);
-            this.btnExplore.TabIndex = 7;
+            this.btnExplore.TabIndex = 10;
             this.btnExplore.Text = "explore";
-            this.btnExplore.UseVisualStyleBackColor = true;
+            this.btnExplore.UseVisualStyleBackColor = false;
             this.btnExplore.Click += new System.EventHandler(this.btnExplore_Click);
             // 
             // tbName
@@ -102,7 +107,7 @@ namespace ProyectoDintNuno
             this.tbName.Margin = new System.Windows.Forms.Padding(4);
             this.tbName.Name = "tbName";
             this.tbName.Size = new System.Drawing.Size(228, 30);
-            this.tbName.TabIndex = 8;
+            this.tbName.TabIndex = 1;
             this.tbName.Tag = "";
             // 
             // tbArtist
@@ -112,7 +117,7 @@ namespace ProyectoDintNuno
             this.tbArtist.Margin = new System.Windows.Forms.Padding(4);
             this.tbArtist.Name = "tbArtist";
             this.tbArtist.Size = new System.Drawing.Size(228, 30);
-            this.tbArtist.TabIndex = 9;
+            this.tbArtist.TabIndex = 2;
             this.tbArtist.Tag = "";
             // 
             // tbSecArtist
@@ -122,7 +127,7 @@ namespace ProyectoDintNuno
             this.tbSecArtist.Margin = new System.Windows.Forms.Padding(4);
             this.tbSecArtist.Name = "tbSecArtist";
             this.tbSecArtist.Size = new System.Drawing.Size(228, 30);
-            this.tbSecArtist.TabIndex = 10;
+            this.tbSecArtist.TabIndex = 3;
             this.tbSecArtist.Tag = "";
             // 
             // tbDescription
@@ -133,7 +138,7 @@ namespace ProyectoDintNuno
             this.tbDescription.Multiline = true;
             this.tbDescription.Name = "tbDescription";
             this.tbDescription.Size = new System.Drawing.Size(228, 115);
-            this.tbDescription.TabIndex = 11;
+            this.tbDescription.TabIndex = 9;
             this.tbDescription.Tag = "";
             // 
             // cbFormat
@@ -141,6 +146,7 @@ namespace ProyectoDintNuno
             this.cbFormat.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbFormat.Font = new System.Drawing.Font("Segoe UI", 12.75F);
             this.cbFormat.FormattingEnabled = true;
+            this.cbFormat.ItemHeight = 23;
             this.cbFormat.Items.AddRange(new object[] {
             "CD",
             "Vinilo",
@@ -156,6 +162,7 @@ namespace ProyectoDintNuno
             this.cbType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbType.Font = new System.Drawing.Font("Segoe UI", 12.75F);
             this.cbType.FormattingEnabled = true;
+            this.cbType.ItemHeight = 23;
             this.cbType.Items.AddRange(new object[] {
             "Album",
             "Single",
@@ -178,28 +185,32 @@ namespace ProyectoDintNuno
             this.dtpAdquisition.Location = new System.Drawing.Point(474, 39);
             this.dtpAdquisition.Name = "dtpAdquisition";
             this.dtpAdquisition.Size = new System.Drawing.Size(228, 30);
-            this.dtpAdquisition.TabIndex = 14;
+            this.dtpAdquisition.TabIndex = 7;
             // 
             // btnCancel
             // 
+            this.btnCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(192)))), ((int)(((byte)(217)))));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.Font = new System.Drawing.Font("Segoe UI", 12.75F);
             this.btnCancel.Location = new System.Drawing.Point(590, 279);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(112, 34);
-            this.btnCancel.TabIndex = 15;
+            this.btnCancel.TabIndex = 12;
             this.btnCancel.Text = "Cancel";
-            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.UseVisualStyleBackColor = false;
             // 
             // btnAccept
             // 
+            this.btnAccept.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(133)))), ((int)(((byte)(193)))));
+            this.btnAccept.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAccept.Font = new System.Drawing.Font("Segoe UI", 12.75F);
             this.btnAccept.Location = new System.Drawing.Point(475, 279);
             this.btnAccept.Name = "btnAccept";
             this.btnAccept.Size = new System.Drawing.Size(110, 34);
-            this.btnAccept.TabIndex = 16;
+            this.btnAccept.TabIndex = 11;
             this.btnAccept.Text = "Add";
-            this.btnAccept.UseVisualStyleBackColor = true;
+            this.btnAccept.UseVisualStyleBackColor = false;
             this.btnAccept.Click += new System.EventHandler(this.btnAccept_Click);
             // 
             // dtpEdition
@@ -208,7 +219,7 @@ namespace ProyectoDintNuno
             this.dtpEdition.Location = new System.Drawing.Point(474, 114);
             this.dtpEdition.Name = "dtpEdition";
             this.dtpEdition.Size = new System.Drawing.Size(228, 30);
-            this.dtpEdition.TabIndex = 17;
+            this.dtpEdition.TabIndex = 8;
             // 
             // tbGenre
             // 
@@ -217,13 +228,14 @@ namespace ProyectoDintNuno
             this.tbGenre.Margin = new System.Windows.Forms.Padding(4);
             this.tbGenre.Name = "tbGenre";
             this.tbGenre.Size = new System.Drawing.Size(228, 30);
-            this.tbGenre.TabIndex = 18;
+            this.tbGenre.TabIndex = 4;
             this.tbGenre.Tag = "";
             // 
             // lblAdquisition
             // 
             this.lblAdquisition.AutoSize = true;
             this.lblAdquisition.Font = new System.Drawing.Font("Segoe UI", 13F);
+            this.lblAdquisition.ForeColor = System.Drawing.SystemColors.Window;
             this.lblAdquisition.Location = new System.Drawing.Point(474, 11);
             this.lblAdquisition.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblAdquisition.Name = "lblAdquisition";
@@ -235,6 +247,7 @@ namespace ProyectoDintNuno
             // 
             this.lblEdition.AutoSize = true;
             this.lblEdition.Font = new System.Drawing.Font("Segoe UI", 13F);
+            this.lblEdition.ForeColor = System.Drawing.SystemColors.Window;
             this.lblEdition.Location = new System.Drawing.Point(474, 79);
             this.lblEdition.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblEdition.Name = "lblEdition";
@@ -246,6 +259,7 @@ namespace ProyectoDintNuno
             // 
             this.lblFormat.AutoSize = true;
             this.lblFormat.Font = new System.Drawing.Font("Segoe UI", 13F);
+            this.lblFormat.ForeColor = System.Drawing.SystemColors.Window;
             this.lblFormat.Location = new System.Drawing.Point(240, 186);
             this.lblFormat.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblFormat.Name = "lblFormat";
@@ -257,6 +271,7 @@ namespace ProyectoDintNuno
             // 
             this.lblType.AutoSize = true;
             this.lblType.Font = new System.Drawing.Font("Segoe UI", 13F);
+            this.lblType.ForeColor = System.Drawing.SystemColors.Window;
             this.lblType.Location = new System.Drawing.Point(240, 250);
             this.lblType.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblType.Name = "lblType";
@@ -269,6 +284,7 @@ namespace ProyectoDintNuno
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(38)))), ((int)(((byte)(35)))));
             this.ClientSize = new System.Drawing.Size(712, 321);
             this.Controls.Add(this.lblType);
             this.Controls.Add(this.lblFormat);
@@ -290,9 +306,10 @@ namespace ProyectoDintNuno
             this.Controls.Add(this.lblImage);
             this.Controls.Add(this.pbImage);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "VistaAnadir";
-            this.Text = "VistaAnadir";
+            this.Text = "Add";
             ((System.ComponentModel.ISupportInitialize)(this.pbImage)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

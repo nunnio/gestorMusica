@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.32901.82
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gestorMusica", "gestorMusica\gestorMusica.csproj", "{E5643659-10C6-4983-8960-0DE92CAFB7C5}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "imagenes", "imagenes", "{CB0BE0D8-EE41-41CD-9EB8-2E67C6AEB973}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "images", "images", "{CB0BE0D8-EE41-41CD-9EB8-2E67C6AEB973}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

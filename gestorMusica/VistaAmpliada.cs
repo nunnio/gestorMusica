@@ -23,13 +23,8 @@ namespace gestorMusica
         public VistaAmpliada()
         {
             InitializeComponent();
-            bajaDatos();
-            
-        }
-        private void VistaAmpliada_Load(object sender, System.EventArgs e)
-        {
-            
-
+            btnDelete.Visible = false;
+            bajaDatos();            
         }
         private void bajaDatos()
         {
@@ -63,8 +58,18 @@ namespace gestorMusica
                 //dtpEdDate = (DateTime)reader[8];
                 tbDescription.Text = (String)reader[9];
                 caratula = (byte[])reader[10];
-                pbImage.Image = convierteAImg(caratula);
+                if (!reader.IsDBNull(reader.GetOrdinal("image")))
+                {
+                    caratula = (byte[])reader[10];
+                    System.Drawing.Image img = convierteAImg(caratula);
+                    pbImage.Image = img;
+                }
             }
+        }
+        private void VistaAmpliada_Load(object sender, System.EventArgs e)
+        {
+            
+
         }
         public System.Drawing.Image convierteAImg(byte[] caratula)
         {
@@ -75,10 +80,11 @@ namespace gestorMusica
             catch { }
             return image;
         }
+        
 
         private void btnModify_Click(object sender, EventArgs e)
         {
-            
+            btnDelete.Visible = true;
             tbName.Enabled = true;
             tbPArtist.Enabled = true;
             tbSArtist.Enabled = true;
@@ -175,12 +181,56 @@ namespace gestorMusica
             catch (MySqlException ex)
             {
                 MessageBox.Show("Error en conexión a base de datos\nFallo en conexión\n" + ex.Message);
-            }
-            catch (Exception ex)
-            {
                 ex.ToString();
                 Console.WriteLine(ex.Message);
+            }            
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("¿Está seguro de que desea borrar este producto?", "Confirmación", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                string[] row = new string[8];
+                row[2] = tbPArtist.Text;
+                row[3] = tbSArtist.Text;
+                borraProducto(row);
+                DialogResult = DialogResult.Cancel;
             }
+        }
+        private void borraProducto(String[] row)
+        {
+            
+            // El usuario acepta
+            MySqlConnectionStringBuilder builder = new MySqlConnectionStringBuilder();
+            builder.Server = "localhost";
+            builder.UserID = "root";
+            builder.Password = "";
+            builder.Database = "enclavedb";
+
+            MySqlConnection conn = new MySqlConnection(builder.ToString());
+            MySqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "DELETE FROM productos WHERE name = @name AND partist = @partist";
+            cmd.Parameters.AddWithValue("@name", row[1]);
+            cmd.Parameters.AddWithValue("@partist", row[2]);
+
+
+            try
+            {
+                conn.Open();
+                //...
+                cmd.ExecuteNonQuery();
+
+                /*Int32 rowsAffected = cmd.ExecuteNonQuery();
+                Console.WriteLine("RowsAffected: {0}", rowsAffected);*/
+
+                conn.Close(); //La conexión hay que cerrarla siempre al terminar
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("Error en conexión a base de datos\nFallo en conexión\n" + ex.Message);
+                ex.ToString();
+                Console.WriteLine(ex.Message);
+            }            
         }
     }
 }

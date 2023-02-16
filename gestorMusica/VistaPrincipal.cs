@@ -36,13 +36,24 @@ namespace ProyectoDintNuno
         {
             InitializeComponent();
             bajaDatos();
+            VistaTutorial form = new VistaTutorial();
+            if(Contador== 1)
+            {
+                form.ShowDialog();
+                lblVVacia.Visible = true;
+            }
+            else
+            {
+                lblVVacia.Visible = false;
+            }
+            
         }
 
         private void VistaPrincipal_Load(object sender, System.EventArgs e)
         {
 
         }
-        private void bajaDatos()
+        public void bajaDatos()
         {
             String sql = "Select * FROM productos WHERE id >= @id;";
             MySqlConnectionStringBuilder builder = new MySqlConnectionStringBuilder();
@@ -55,84 +66,90 @@ namespace ProyectoDintNuno
             MySqlCommand cmd = conn.CreateCommand();
             cmd = new MySqlCommand(sql, conn);
             cmd.Parameters.Add("@id", MySqlDbType.Text).Value = 1;
-            
-            conn.Open();
-            MySqlDataReader reader =  cmd.ExecuteReader(); 
-            
-            while (reader.Read())
+            try
             {
-                /*string[] row = new string[8];
-                DateTime[] fechas = new DateTime[2];
-                System.Drawing.Image img;
+                conn.Open();
+                MySqlDataReader reader = cmd.ExecuteReader();
 
-                row[0] = (String)reader[0];
-                row[1] = (String)reader[1];
-                row[2] = (String)reader[2];
-                row[3] = (String)reader[3];
-                row[4] = (String)reader[4];
-                row[5] = (String)reader[5];
-                row[6] = (String)reader[6];
-                row[7] = (String)reader[7];
-                fechas[0] = (DateTime)reader[8];
-                fechas[1] = (DateTime)reader[9];
-                img = (System.Drawing.Image)reader[10];              
-
-                dgvPrincipal.Rows.Add(row);
-                dgvPrincipal.Rows[dgvPrincipal.Rows.Count - 1].Cells["cImage"].Value = img;
-                dgvPrincipal.Rows[dgvPrincipal.Rows.Count - 1].Cells["cAdDate"].Value = fechas[0];
-                dgvPrincipal.Rows[dgvPrincipal.Rows.Count - 1].Cells["cEdDate"].Value = fechas[1];
-                */
-                FlowLayoutPanel panel = new FlowLayoutPanel();
-                PictureBox pb = new PictureBox();
-                Label lblName = new Label();
-                Label lblArtist = new Label();
-                byte[] caratula ;
-
-                Contador = (int)reader[0] + 1;
-                lblName.Text = (String)reader[1];
-                lblName.Font = new Font("Segoe UI", 16);
-                lblName.TextAlign = ContentAlignment.MiddleCenter;
-                lblName.MinimumSize = new Size(180, 30);
-                //lblName.BackColor = Color.Brown;
-                lblName.Margin = new Padding(2, 0, 0, 0);
-
-                lblArtist.Text = (String)reader[2];
-                lblArtist.Font = new Font("Segoe UI", 13);
-                lblArtist.TextAlign = ContentAlignment.MiddleCenter;
-                lblArtist.MinimumSize = new Size(180, 25);
-                //lblArtist.BackColor = Color.White;
-                lblArtist.Margin = new Padding(2, 5, 0, 0);
-                System.DBNull si;
-                if (reader[10] != si)
+                while (reader.Read())
                 {
-                    caratula = (byte[])reader[10];
-                    System.Drawing.Image img = convierteAImg(caratula);
-                    pb.Image = img;
+                    /*string[] row = new string[8];
+                    DateTime[] fechas = new DateTime[2];
+                    System.Drawing.Image img;
+
+                    row[0] = (String)reader[0];
+                    row[1] = (String)reader[1];
+                    row[2] = (String)reader[2];
+                    row[3] = (String)reader[3];
+                    row[4] = (String)reader[4];
+                    row[5] = (String)reader[5];
+                    row[6] = (String)reader[6];
+                    row[7] = (String)reader[7];
+                    fechas[0] = (DateTime)reader[8];
+                    fechas[1] = (DateTime)reader[9];
+                    img = (System.Drawing.Image)reader[10];              
+
+                    dgvPrincipal.Rows.Add(row);
+                    dgvPrincipal.Rows[dgvPrincipal.Rows.Count - 1].Cells["cImage"].Value = img;
+                    dgvPrincipal.Rows[dgvPrincipal.Rows.Count - 1].Cells["cAdDate"].Value = fechas[0];
+                    dgvPrincipal.Rows[dgvPrincipal.Rows.Count - 1].Cells["cEdDate"].Value = fechas[1];
+                    */
+                    FlowLayoutPanel panel = new FlowLayoutPanel();
+                    PictureBox pb = new PictureBox();
+                    Label lblName = new Label();
+                    Label lblArtist = new Label();
+                    byte[] caratula;
+
+                    Contador = (int)reader[0] + 1;
+                    lblName.Text = (String)reader[1];
+                    lblName.Font = new Font("Segoe UI", 16);
+                    lblName.TextAlign = ContentAlignment.MiddleCenter;
+                    lblName.MinimumSize = new Size(180, 30);
+                    //lblName.BackColor = Color.Brown;
+                    lblName.ForeColor= Color.White;
+                    lblName.Margin = new Padding(2, 0, 0, 0);
+
+                    lblArtist.Text = (String)reader[2];
+                    lblArtist.Font = new Font("Segoe UI", 13);
+                    lblArtist.TextAlign = ContentAlignment.MiddleCenter;
+                    lblArtist.MinimumSize = new Size(180, 25);
+                    //lblArtist.BackColor = Color.White;
+                    lblArtist.ForeColor = Color.White;
+                    lblArtist.Margin = new Padding(2, 5, 0, 0);
+                    System.DBNull si;
+                    if (!reader.IsDBNull(reader.GetOrdinal("image"))) 
+                    {
+                        caratula = (byte[])reader[10];
+                        System.Drawing.Image img = convierteAImg(caratula);
+                        pb.Image = img;
+                    }
+                    //pb.Image = (Bitmap)caratula;
+                    pb.SizeMode = PictureBoxSizeMode.Zoom;
+                    pb.MinimumSize = new Size(180, 180);
+                    pb.MaximumSize = new Size(180, 180);
+                    //pb.BackColor = Color.Gray;
+
+                    panel.Controls.Add(pb);
+                    panel.Controls.Add(lblName);
+                    panel.Controls.Add(lblArtist);
+                    //panel.BackColor = Color.Red;
+                    panel.MinimumSize = new Size(185, 250);
+                    panel.MaximumSize = new Size(185, 300);
+
+                    flpConjunto.Controls.Add(panel);
+
+                    Name = lblName.Text;
+
+                    pb.Click += new System.EventHandler(muestraInfo);
                 }
-                
-                
-                
-                //pb.Image = (Bitmap)caratula;
-                pb.SizeMode = PictureBoxSizeMode.Zoom;
-                pb.MinimumSize = new Size(180, 180);
-                pb.MaximumSize = new Size(180, 180);
-                //pb.BackColor = Color.Gray;
-
-                panel.Controls.Add(pb);
-                panel.Controls.Add(lblName);
-                panel.Controls.Add(lblArtist);
-                //panel.BackColor = Color.Red;
-                panel.MinimumSize = new Size(185, 250);
-                panel.MaximumSize = new Size(185, 300);
-
-                flpConjunto.Controls.Add(panel);
-
-                Name = lblName.Text;
-
-                pb.Click += new System.EventHandler(muestraInfo);
-
-
             }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("Error en conexión a base de datos\nFallo en conexión\n" + ex.Message);
+                ex.ToString();
+                Console.WriteLine(ex.Message);
+            }
+
         }
         public byte[] convierteAArray(System.Drawing.Image imageIn)
         {
@@ -181,18 +198,26 @@ namespace ProyectoDintNuno
         private void btnAnadir_Click(object sender, EventArgs e)
         {
             VistaAnadir form = new VistaAnadir();
+            // Obtener la ruta de la carpeta "Images" en la raíz del proyecto
+            string imagePath = "./Images";
+            
+
+            // Copiar la imagen seleccionada en el cuadro de diálogo a la carpeta "Images"
+            File.Copy(op.FileName, Path.Combine(imagePath, Path.GetFileName(op.FileName)));
+
             if (form.ShowDialog() == DialogResult.OK)
             {
                 FlowLayoutPanel panel = new FlowLayoutPanel();
                 PictureBox pb = new PictureBox();
                 Label lblName = new Label();
                 Label lblArtist = new Label();
-
+/*+++++++++++++++++++++++++++++++++++++++++++++++++*/
                 lblName.Text = form.Name;
                 lblName.Font = new Font("Segoe UI", 16);
                 lblName.TextAlign = ContentAlignment.MiddleCenter;
                 lblName.MinimumSize = new Size(180, 30);
                 //lblName.BackColor = Color.Brown;
+                lblName.ForeColor = Color.White;
                 lblName.Margin = new Padding(2, 0, 0, 0);
 
                 lblArtist.Text = form.PArtist;
@@ -200,6 +225,7 @@ namespace ProyectoDintNuno
                 lblArtist.TextAlign = ContentAlignment.MiddleCenter;
                 lblArtist.MinimumSize = new Size(180, 25);
                 //lblArtist.BackColor = Color.White;
+                lblArtist.ForeColor = Color.White;
                 lblArtist.Margin = new Padding(2, 5, 0, 0);
 
                 panel.Controls.Add(pb);
@@ -215,7 +241,7 @@ namespace ProyectoDintNuno
                 pb.MaximumSize = new Size(180, 180);
                 //pb.BackColor = Color.Gray;
                 flpConjunto.Controls.Add(panel);
-
+/*+++++++++++++++++++++++++++++++++++++++++++++++++*/
                 string[] row = new string[8];
                 DateTime[] fechas = new DateTime[2];
                 row[0] = Contador.ToString();
@@ -243,7 +269,7 @@ namespace ProyectoDintNuno
                 subeDatos(row, caratula, fechas);
 
                 pb.Click += new System.EventHandler(muestraInfo);
-
+                lblVVacia.Visible = false;
                 
             }
         }
@@ -302,10 +328,8 @@ namespace ProyectoDintNuno
                 Console.WriteLine(ex.Message);
             }
 
-            
-            cmd.CommandText = "UPDATE productos SET " +
-                "image = @image, " +
-                "WHERE id = @id";
+            //string sql = "UPDATE productos SET imagen = @imagen WHERE id = @id";
+            cmd.CommandText = "UPDATE productos SET image = @image WHERE id = @id";
             //cmd.Parameters.AddWithValue("@id", row[0]);
             cmd.Parameters.AddWithValue("@image", img);
             try
@@ -322,15 +346,19 @@ namespace ProyectoDintNuno
             catch (MySqlException ex)
             {
                 MessageBox.Show("Error en conexión a base de datos\nFallo en conexión\n" + ex.Message);
-            }
-            catch (Exception ex)
-            {
                 ex.ToString();
                 Console.WriteLine(ex.Message);
             }
         }
 
-        
+        private void iniciarVistaTutorialToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            VistaTutorial form = new VistaTutorial();
+            if(form.ShowDialog() == DialogResult.OK)
+            {
+
+            }
+        }
     }
 }
 /*CREATE TABLE productos (
