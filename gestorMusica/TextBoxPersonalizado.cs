@@ -22,11 +22,11 @@ namespace gestorMusica
             InitializeComponent();
             tb = new TextBox();
             tb.Dock= DockStyle.Fill;
-            //tb.BorderStyle= BorderStyle.None;
-            tb.Anchor= AnchorStyles.Left;
+            tb.BorderStyle= BorderStyle.Fixed3D;
+            /*tb.Anchor= AnchorStyles.Left;
             tb.Anchor= AnchorStyles.Right;
             tb.Anchor= AnchorStyles.Top;
-            tb.Anchor= AnchorStyles.Bottom;
+            tb.Anchor= AnchorStyles.Bottom;*/
             this.Controls.Add(tb);
         }
         [Category("Data")]

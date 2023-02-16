@@ -194,7 +194,7 @@ namespace ProyectoDintNuno
             // btnAccept
             // 
             this.btnAccept.Font = new System.Drawing.Font("Segoe UI", 12.75F);
-            this.btnAccept.Location = new System.Drawing.Point(474, 279);
+            this.btnAccept.Location = new System.Drawing.Point(475, 279);
             this.btnAccept.Name = "btnAccept";
             this.btnAccept.Size = new System.Drawing.Size(110, 34);
             this.btnAccept.TabIndex = 16;
@@ -269,7 +269,7 @@ namespace ProyectoDintNuno
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(712, 403);
+            this.ClientSize = new System.Drawing.Size(712, 321);
             this.Controls.Add(this.lblType);
             this.Controls.Add(this.lblFormat);
             this.Controls.Add(this.lblEdition);

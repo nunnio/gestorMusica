@@ -18,6 +18,7 @@ namespace gestorMusica
     {
         private System.Drawing.Image image;
         private VistaPrincipal form = new VistaPrincipal();
+        private int id;
 
         public VistaAmpliada()
         {
@@ -51,7 +52,7 @@ namespace gestorMusica
 
             while (reader.Read())
             {
-
+                id = (int)reader[0];
                 tbName.Text = (String)reader[1];
                 tbPArtist.Text = (String)reader[2];
                 tbSArtist.Text = (String)reader[3];
@@ -132,10 +133,10 @@ namespace gestorMusica
 
                 System.Drawing.Image img = pbImage.Image;
 
-                subeDatos(row, img, fechas);
+                actualizaDatos(row, img, fechas, id);
             }
         }
-        private void subeDatos(string[] row, System.Drawing.Image img, DateTime[] fechas)
+        private void actualizaDatos(string[] row, System.Drawing.Image img, DateTime[] fechas, int id)
         {
             MySqlConnectionStringBuilder builder = new MySqlConnectionStringBuilder();
             builder.Server = "localhost";
@@ -145,10 +146,11 @@ namespace gestorMusica
 
             MySqlConnection conn = new MySqlConnection(builder.ToString());
             MySqlCommand cmd = conn.CreateCommand();
-            cmd.CommandText = "INSERT INTO productos (id, name, partist, sartist, genre, format, type, addate, eddate, description, image) value " +
-                "(@id, @name, @partist, @sartist, @genre, @format, @type, @addate, @eddate, @description, @image)";
+            cmd.CommandText = "UPDATE productos SET " +
+                "name = @name, partist = @partist, sartist = @sartist, genre = @genre, format = @format, type = @type, " +
+                "addate = @addate, eddate = @eddate, description = @description WHERE id = @id";
 
-            cmd.Parameters.AddWithValue("@id", row[0]);
+            cmd.Parameters.AddWithValue("@id", id);
             cmd.Parameters.AddWithValue("@name", row[1]);
             cmd.Parameters.AddWithValue("@partist", row[2]);
             cmd.Parameters.AddWithValue("@sartist", row[3]);

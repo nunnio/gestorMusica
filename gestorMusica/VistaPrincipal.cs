@@ -55,7 +55,7 @@ namespace ProyectoDintNuno
             MySqlCommand cmd = conn.CreateCommand();
             cmd = new MySqlCommand(sql, conn);
             cmd.Parameters.Add("@id", MySqlDbType.Text).Value = 1;
-
+            
             conn.Open();
             MySqlDataReader reader =  cmd.ExecuteReader(); 
             
@@ -86,8 +86,9 @@ namespace ProyectoDintNuno
                 PictureBox pb = new PictureBox();
                 Label lblName = new Label();
                 Label lblArtist = new Label();
-                byte[] caratula;
+                byte[] caratula ;
 
+                Contador = (int)reader[0] + 1;
                 lblName.Text = (String)reader[1];
                 lblName.Font = new Font("Segoe UI", 16);
                 lblName.TextAlign = ContentAlignment.MiddleCenter;
@@ -101,10 +102,16 @@ namespace ProyectoDintNuno
                 lblArtist.MinimumSize = new Size(180, 25);
                 //lblArtist.BackColor = Color.White;
                 lblArtist.Margin = new Padding(2, 5, 0, 0);
-
-                caratula = (byte[])reader[10];
-                System.Drawing.Image img = convierteAImg(caratula);
-                pb.Image = img;
+                System.DBNull si;
+                if (reader[10] != si)
+                {
+                    caratula = (byte[])reader[10];
+                    System.Drawing.Image img = convierteAImg(caratula);
+                    pb.Image = img;
+                }
+                
+                
+                
                 //pb.Image = (Bitmap)caratula;
                 pb.SizeMode = PictureBoxSizeMode.Zoom;
                 pb.MinimumSize = new Size(180, 180);
@@ -127,15 +134,23 @@ namespace ProyectoDintNuno
 
             }
         }
+        public byte[] convierteAArray(System.Drawing.Image imageIn)
+        {
+            using (var ms = new MemoryStream())
+            {
+                imageIn.Save(ms, imageIn.RawFormat);
+                return ms.ToArray();
+            }
+        }
         public System.Drawing.Image convierteAImg(byte[] caratula)
         {
+            
             try { 
                 image = (System.Drawing.Image)new ImageConverter().ConvertFrom(caratula);
             }
             catch { }
             return image;
-
-
+            
 
             /* 
             Bitmap bm = (Bitmap)new ImageConverter().ConvertFrom(caratula);
@@ -151,12 +166,16 @@ namespace ProyectoDintNuno
             }
 
             return bm;*/
-            /*
-                MemoryStream ms = new MemoryStream(caratula);
-                System.Drawing.Image returnImage = System.Drawing.Image.FromStream(ms);
-                return (Bitmap)returnImage;
-            */
-
+            /*System.Drawing.Image returnImage;
+            using (var ms = new MemoryStream(caratula))
+            {
+                //returnImage = (System.Drawing.Image) Bitmap.FromStream(ms);
+                
+                
+                returnImage = System.Drawing.Image.FromStream(ms);
+                return returnImage;
+            }*/
+            
         }
 
         private void btnAnadir_Click(object sender, EventArgs e)
@@ -219,9 +238,9 @@ namespace ProyectoDintNuno
                 
                 Contador++;
 
-                
+                byte[] caratula = convierteAArray(img);
 
-                subeDatos(row, img, fechas);
+                subeDatos(row, caratula, fechas);
 
                 pb.Click += new System.EventHandler(muestraInfo);
 
@@ -238,7 +257,7 @@ namespace ProyectoDintNuno
                 
             }
         }
-        private void subeDatos(string[] row, System.Drawing.Image img, DateTime[] fechas)
+        private void subeDatos(string[] row, byte[] img, DateTime[] fechas)
         {
             MySqlConnectionStringBuilder builder = new MySqlConnectionStringBuilder();
             builder.Server = "localhost";
@@ -248,8 +267,8 @@ namespace ProyectoDintNuno
 
             MySqlConnection conn = new MySqlConnection(builder.ToString());
             MySqlCommand cmd = conn.CreateCommand();
-            cmd.CommandText = "INSERT INTO productos (id, name, partist, sartist, genre, format, type, addate, eddate, description, image) value " +
-                "(@id, @name, @partist, @sartist, @genre, @format, @type, @addate, @eddate, @description, @image)";
+            cmd.CommandText = "INSERT INTO productos (id, name, partist, sartist, genre, format, type, addate, eddate, description) value " +
+                "(@id, @name, @partist, @sartist, @genre, @format, @type, @addate, @eddate, @description)";
 
             cmd.Parameters.AddWithValue("@id", row[0]);
             cmd.Parameters.AddWithValue("@name", row[1]);
@@ -261,7 +280,7 @@ namespace ProyectoDintNuno
             cmd.Parameters.AddWithValue("@description", row[7]);
             cmd.Parameters.AddWithValue("@addate", fechas[0]);
             cmd.Parameters.AddWithValue("@eddate", fechas[1]);
-            cmd.Parameters.AddWithValue("@image", img);
+            
             try
             {
                 conn.Open();
@@ -276,6 +295,33 @@ namespace ProyectoDintNuno
             catch (MySqlException ex)
             {
                 MessageBox.Show("Error en conexión a base de datos\nFallo en conexión\n"+ex.Message);
+            }
+            catch (Exception ex)
+            {
+                ex.ToString();
+                Console.WriteLine(ex.Message);
+            }
+
+            
+            cmd.CommandText = "UPDATE productos SET " +
+                "image = @image, " +
+                "WHERE id = @id";
+            //cmd.Parameters.AddWithValue("@id", row[0]);
+            cmd.Parameters.AddWithValue("@image", img);
+            try
+            {
+                conn.Open();
+                //...
+                cmd.ExecuteNonQuery();
+
+                /*Int32 rowsAffected = cmd.ExecuteNonQuery();
+                Console.WriteLine("RowsAffected: {0}", rowsAffected);*/
+
+                conn.Close(); //La conexión hay que cerrarla siempre al terminar
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("Error en conexión a base de datos\nFallo en conexión\n" + ex.Message);
             }
             catch (Exception ex)
             {

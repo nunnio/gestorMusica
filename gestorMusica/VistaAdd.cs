@@ -34,6 +34,7 @@ namespace ProyectoDintNuno
 
         private void btnAccept_Click(object sender, EventArgs e)
         {
+            //Name = tbpName.Text;
             Name = tbName.Text;
             PArtist = tbArtist.Text;
             SArtist = tbSecArtist.Text;
