@@ -92,6 +92,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Caja.resx">
+      <DependentUpon>Caja.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MiTBPersonalizado.resx">
       <DependentUpon>MiTBPersonalizado.cs</DependentUpon>
     </EmbeddedResource>

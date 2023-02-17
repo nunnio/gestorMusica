@@ -53,6 +53,9 @@ namespace ProyectoDintNuno
         {
 
         }
+        /// <summary>
+        /// This method gets some data from the database and puts it on the main FlowLayoutPanel.
+        /// </summary>
         public void bajaDatos()
         {
             String sql = "Select * FROM productos WHERE id >= @id;";
@@ -94,13 +97,30 @@ namespace ProyectoDintNuno
                     dgvPrincipal.Rows[dgvPrincipal.Rows.Count - 1].Cells["cAdDate"].Value = fechas[0];
                     dgvPrincipal.Rows[dgvPrincipal.Rows.Count - 1].Cells["cEdDate"].Value = fechas[1];
                     */
-                    FlowLayoutPanel panel = new FlowLayoutPanel();
-                    PictureBox pb = new PictureBox();
-                    Label lblName = new Label();
-                    Label lblArtist = new Label();
+
+
+
+                    string n; string a;
                     byte[] caratula;
 
+                    Caja caja = new Caja();
                     Contador = (int)reader[0] + 1;
+                    //Name = (String)reader[1];
+                    //PArtist = (String)reader[2];
+                    n = (String)reader[1];
+                    a = (String)reader[2];
+                    caja.Name = n;
+                    caja.Artist = a;
+                    if (!reader.IsDBNull(reader.GetOrdinal("image")))
+                    {
+                        caratula = (byte[])reader[10];
+                        System.Drawing.Image img = convierteAImg(caratula);
+                        caja.Image = img;
+                    }
+                    //caja.actualizaDatos(Name, PArtist);
+                    flpConjunto.Controls.Add(caja);
+                    
+                    /*
                     lblName.Text = (String)reader[1];
                     lblName.Font = new Font("Segoe UI", 16);
                     lblName.TextAlign = ContentAlignment.MiddleCenter;
@@ -139,8 +159,9 @@ namespace ProyectoDintNuno
                     flpConjunto.Controls.Add(panel);
 
                     Name = lblName.Text;
+                    */
 
-                    pb.Click += new System.EventHandler(muestraInfo);
+                    //pb.Click += new System.EventHandler(muestraInfo);
                 }
             }
             catch (MySqlException ex)
@@ -151,6 +172,11 @@ namespace ProyectoDintNuno
             }
 
         }
+        /// <summary>
+        /// This method converts an Image to a byte array.
+        /// </summary>
+        /// <param name="imageIn"></param>
+        /// <returns>A byte array</returns>
         public byte[] convierteAArray(System.Drawing.Image imageIn)
         {
             using (var ms = new MemoryStream())
@@ -159,6 +185,11 @@ namespace ProyectoDintNuno
                 return ms.ToArray();
             }
         }
+        /// <summary>
+        /// This method converts a byte array to an Image
+        /// </summary>
+        /// <param name="caratula"></param>
+        /// <returns>An Image</returns>
         public System.Drawing.Image convierteAImg(byte[] caratula)
         {
             
@@ -203,15 +234,26 @@ namespace ProyectoDintNuno
             
 
             // Copiar la imagen seleccionada en el cuadro de diálogo a la carpeta "Images"
-            File.Copy(op.FileName, Path.Combine(imagePath, Path.GetFileName(op.FileName)));
+            //File.Copy(op.FileName, Path.Combine(imagePath, Path.GetFileName(op.FileName)));
 
             if (form.ShowDialog() == DialogResult.OK)
             {
+
+                Caja caja = new Caja();
+                //Name = (String)reader[1];
+                //PArtist = (String)reader[2];
+                caja.Name = form.Name;
+                caja.Artist = form.PArtist;
+                caja.Image = form.Image;
+                //caja.actualizaDatos(Name, PArtist);
+                flpConjunto.Controls.Add(caja);
+
                 FlowLayoutPanel panel = new FlowLayoutPanel();
                 PictureBox pb = new PictureBox();
                 Label lblName = new Label();
                 Label lblArtist = new Label();
-/*+++++++++++++++++++++++++++++++++++++++++++++++++*/
+
+                /*
                 lblName.Text = form.Name;
                 lblName.Font = new Font("Segoe UI", 16);
                 lblName.TextAlign = ContentAlignment.MiddleCenter;
@@ -241,7 +283,8 @@ namespace ProyectoDintNuno
                 pb.MaximumSize = new Size(180, 180);
                 //pb.BackColor = Color.Gray;
                 flpConjunto.Controls.Add(panel);
-/*+++++++++++++++++++++++++++++++++++++++++++++++++*/
+                */
+
                 string[] row = new string[8];
                 DateTime[] fechas = new DateTime[2];
                 row[0] = Contador.ToString();
@@ -273,6 +316,11 @@ namespace ProyectoDintNuno
                 
             }
         }
+        /// <summary>
+        /// This method shows all the information from the object clicked.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void muestraInfo(object sender, EventArgs e)
         {
             
@@ -283,6 +331,12 @@ namespace ProyectoDintNuno
                 
             }
         }
+        /// <summary>
+        /// This method uploads all the information from an object created.
+        /// </summary>
+        /// <param name="row"></param>
+        /// <param name="img"></param>
+        /// <param name="fechas"></param>
         private void subeDatos(string[] row, byte[] img, DateTime[] fechas)
         {
             MySqlConnectionStringBuilder builder = new MySqlConnectionStringBuilder();
@@ -321,9 +375,6 @@ namespace ProyectoDintNuno
             catch (MySqlException ex)
             {
                 MessageBox.Show("Error en conexión a base de datos\nFallo en conexión\n"+ex.Message);
-            }
-            catch (Exception ex)
-            {
                 ex.ToString();
                 Console.WriteLine(ex.Message);
             }
@@ -359,18 +410,12 @@ namespace ProyectoDintNuno
 
             }
         }
+        public void reiniciaVistaPrincipal()
+        {
+            //this.Dispose();
+            flpConjunto.Controls.Clear();
+            bajaDatos();
+        }
     }
 }
-/*CREATE TABLE productos (
-    id int PRIMARY KEY,
-    name VARCHAR(20) UNIQUE,
-    partist VARCHAR(45),
-    sartist VARCHAR(45),
-    genre VARCHAR(45),
-    format VARCHAR(10),
-    type VARCHAR(10),
-    addate DATE,
-eddate DATE,
-    description VARCHAR(255),
-    image BLOB
-);*/
+ 

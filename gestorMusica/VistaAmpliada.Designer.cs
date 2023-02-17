@@ -55,7 +55,7 @@ namespace gestorMusica
             // 
             // pbImage
             // 
-            this.pbImage.Location = new System.Drawing.Point(17, 41);
+            this.pbImage.Location = new System.Drawing.Point(17, 52);
             this.pbImage.Name = "pbImage";
             this.pbImage.Size = new System.Drawing.Size(279, 304);
             this.pbImage.TabIndex = 0;
@@ -183,7 +183,7 @@ namespace gestorMusica
             // 
             this.tbPArtist.Enabled = false;
             this.tbPArtist.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbPArtist.Location = new System.Drawing.Point(17, 351);
+            this.tbPArtist.Location = new System.Drawing.Point(17, 362);
             this.tbPArtist.Name = "tbPArtist";
             this.tbPArtist.Size = new System.Drawing.Size(279, 30);
             this.tbPArtist.TabIndex = 2;
@@ -192,7 +192,7 @@ namespace gestorMusica
             // 
             this.tbName.Enabled = false;
             this.tbName.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbName.Location = new System.Drawing.Point(17, 3);
+            this.tbName.Location = new System.Drawing.Point(17, 14);
             this.tbName.Name = "tbName";
             this.tbName.Size = new System.Drawing.Size(279, 35);
             this.tbName.TabIndex = 1;

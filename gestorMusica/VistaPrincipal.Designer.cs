@@ -53,7 +53,6 @@ namespace ProyectoDintNuno
             this.cEdDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblVVacia = new System.Windows.Forms.Label();
-            this.op = new System.Windows.Forms.OpenFileDialog();
             this.menuStrip1.SuspendLayout();
             this.tcVistaPrincipal.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -97,7 +96,7 @@ namespace ProyectoDintNuno
             // iniciarTutorialToolStripMenuItem
             // 
             this.iniciarTutorialToolStripMenuItem.Name = "iniciarTutorialToolStripMenuItem";
-            this.iniciarTutorialToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.iniciarTutorialToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
             this.iniciarTutorialToolStripMenuItem.Text = "Iniciar tutorial";
             this.iniciarTutorialToolStripMenuItem.Click += new System.EventHandler(this.iniciarVistaTutorialToolStripMenuItem_Click);
             // 
@@ -273,10 +272,6 @@ namespace ProyectoDintNuno
             this.lblVVacia.TabIndex = 6;
             this.lblVVacia.Text = "Start adding your first album →";
             // 
-            // op
-            // 
-            this.op.FileName = "openFileDialog1";
-            // 
             // VistaPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -326,7 +321,6 @@ namespace ProyectoDintNuno
         private System.Windows.Forms.ToolStripMenuItem ayudaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem iniciarTutorialToolStripMenuItem;
         private System.Windows.Forms.Label lblVVacia;
-        private System.Windows.Forms.OpenFileDialog op;
     }
 }
 

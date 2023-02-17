@@ -1,14 +1,8 @@
 ﻿using MySql.Data.MySqlClient;
 using ProyectoDintNuno;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Net.Mime.MediaTypeNames;
 
@@ -19,58 +13,83 @@ namespace gestorMusica
         private System.Drawing.Image image;
         private VistaPrincipal form = new VistaPrincipal();
         private int id;
+        public string Name { get; set; }
+        public string Artist;
 
         public VistaAmpliada()
         {
             InitializeComponent();
             btnDelete.Visible = false;
-            bajaDatos();            
+            Caja caja = new Caja();
+            //Name = caja.recojeNombre();
+            //caja.actualizaDatos(Name, Artist);
+            //bajaDatos();            
         }
-        private void bajaDatos()
+        /// <summary>
+        /// This method gets all the data from the object clicked and puts it on the respective fields.
+        /// </summary>
+        public void bajaDatos()
         {
-            byte[] caratula;
-            String sql = "Select * FROM productos WHERE name = @name AND partist = @partist ;";
-            MySqlConnectionStringBuilder builder = new MySqlConnectionStringBuilder();
-            builder.Server = "localhost";
-            builder.UserID = "root";
-            builder.Password = "";
-            builder.Database = "enclavedb";
-
-            MySqlConnection conn = new MySqlConnection(builder.ToString());
-            MySqlCommand cmd = conn.CreateCommand();
-            cmd = new MySqlCommand(sql, conn);
-            cmd.Parameters.Add("@name", MySqlDbType.Text).Value = "Together power";
-            cmd.Parameters.Add("@partist", MySqlDbType.Text).Value = "Green Turtle";
-
-            conn.Open();
-            MySqlDataReader reader = cmd.ExecuteReader();
-
-            while (reader.Read())
+            
+            try
             {
-                id = (int)reader[0];
-                tbName.Text = (String)reader[1];
-                tbPArtist.Text = (String)reader[2];
-                tbSArtist.Text = (String)reader[3];
-                tbGenre.Text = (String)reader[4];
-                cbType.Text = (String)reader[5];
-                cbFormat.Text = (String)reader[6];
-                //dtpAdDate = (DateTime)reader[7];
-                //dtpEdDate = (DateTime)reader[8];
-                tbDescription.Text = (String)reader[9];
-                caratula = (byte[])reader[10];
-                if (!reader.IsDBNull(reader.GetOrdinal("image")))
+                byte[] caratula;
+                String sql = "Select * FROM productos WHERE name = @name AND partist = @partist ;";
+                MySqlConnectionStringBuilder builder = new MySqlConnectionStringBuilder();
+                builder.Server = "localhost";
+                builder.UserID = "root";
+                builder.Password = "";
+                builder.Database = "enclavedb";
+                MySqlConnection conn = new MySqlConnection(builder.ToString());
+                MySqlCommand cmd = conn.CreateCommand();
+                cmd = new MySqlCommand(sql, conn);
+                //this.Name = Caja.Name;
+                //Caja.actualizaDatos();
+                cmd.Parameters.Add("@name", MySqlDbType.Text).Value = Name;
+                cmd.Parameters.Add("@partist", MySqlDbType.Text).Value = Artist;
+
+                conn.Open();
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
                 {
+                    id = (int)reader[0];
+                    tbName.Text = (String)reader[1];
+                    tbPArtist.Text = (String)reader[2];
+                    tbSArtist.Text = (String)reader[3];
+                    tbGenre.Text = (String)reader[4];
+                    cbType.Text = (String)reader[5];
+                    cbFormat.Text = (String)reader[6];
+                    //dtpAdDate = (DateTime)reader[7];
+                    //dtpEdDate = (DateTime)reader[8];
+                    tbDescription.Text = (String)reader[9];
                     caratula = (byte[])reader[10];
-                    System.Drawing.Image img = convierteAImg(caratula);
-                    pbImage.Image = img;
+                    if (!reader.IsDBNull(reader.GetOrdinal("image")))
+                    {
+                        caratula = (byte[])reader[10];
+                        System.Drawing.Image img = convierteAImg(caratula);
+                        pbImage.Image = img;
+                    }
                 }
             }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("Error en conexión a base de datos\nFallo en conexión\n" + ex.Message);
+                ex.ToString();
+                Console.WriteLine(ex.Message);
+            }
+           
         }
         private void VistaAmpliada_Load(object sender, System.EventArgs e)
         {
             
 
         }
+        /// <summary>
+        /// This method converts a byte array to an Image
+        /// </summary>
+        /// <param name="caratula"></param>
+        /// <returns>An Image</returns>
         public System.Drawing.Image convierteAImg(byte[] caratula)
         {
             try
@@ -123,6 +142,7 @@ namespace gestorMusica
                 dtpAdDate.Enabled = false;
                 dtpEdDate.Enabled = false;
                 tbDescription.Enabled = false;
+                
 
 
                 string[] row = new string[8];
@@ -140,8 +160,24 @@ namespace gestorMusica
                 System.Drawing.Image img = pbImage.Image;
 
                 actualizaDatos(row, img, fechas, id);
+
+                VistaPrincipal form = (VistaPrincipal)System.Windows.Forms.Application.OpenForms[System.Windows.Forms.Application.OpenForms.Count - 2];
+                form.reiniciaVistaPrincipal();
+                /*
+                 Crear un método con clear y bajadatos en vprincipal
+
+                en esta vista hacer:
+
+                 */
             }
         }
+        /// <summary>
+        /// This method updates the changed data of an object on the database.
+        /// </summary>
+        /// <param name="row"></param>
+        /// <param name="img"></param>
+        /// <param name="fechas"></param>
+        /// <param name="id"></param>
         private void actualizaDatos(string[] row, System.Drawing.Image img, DateTime[] fechas, int id)
         {
             MySqlConnectionStringBuilder builder = new MySqlConnectionStringBuilder();
@@ -197,6 +233,10 @@ namespace gestorMusica
                 DialogResult = DialogResult.Cancel;
             }
         }
+        /// <summary>
+        /// This method deletes an object from the database.  
+        /// </summary>
+        /// <param name="row"></param>
         private void borraProducto(String[] row)
         {
             

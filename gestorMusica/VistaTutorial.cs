@@ -16,25 +16,27 @@ namespace gestorMusica
         public VistaTutorial()
         {
             InitializeComponent();
-            if(cbStart.Checked== true )
-            {
-                DialogResult= DialogResult.Cancel;
-            }
-            else { DialogResult = DialogResult.OK; }
+            pb1.Image = Image.FromFile("./images/T1.jpg");
+            pb2.Image = Image.FromFile("./images/T2.jpg");
+            pb3.Image = Image.FromFile("./images/T3.jpg");
+            pb4.Image = Image.FromFile("./images/T4.jpg");
+            pb5.Image = Image.FromFile("./images/T5.jpg");
+            pb6.Image = Image.FromFile("./images/T6.jpg");
+            pb7.Image = Image.FromFile("./images/T7.jpg");
         }
 
         private void btnNext_Click(object sender, EventArgs e)
         {
-            if(indice >= 12)
+            if(indice >= 8)
             {
-                indice = 11;
+                indice = 7;
             }
             else
             {
                 indice++;
                 cambiaHoja();
             }
-            if (indice == 6)
+            if (indice == 7)
             {
                 btnNext.Visible = false;
                 btnPrevious.Visible = true;
@@ -68,6 +70,9 @@ namespace gestorMusica
                 btnPrevious.Visible = true;
             }
         }
+        /// <summary>
+        /// This method has a switch which changes the tabView depending on the value of the index.
+        /// </summary>
         private void cambiaHoja()
         {
             switch(indice)
@@ -78,6 +83,7 @@ namespace gestorMusica
                 case 4: tcTutorial.SelectedTab = tpTutorial4; break;
                 case 5: tcTutorial.SelectedTab = tpTutorial5; break;
                 case 6: tcTutorial.SelectedTab = tpTutorial6; break;
+                case 7: tcTutorial.SelectedTab = tpTutorial7; break;
             }
         }
 

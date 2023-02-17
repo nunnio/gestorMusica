@@ -56,7 +56,6 @@ namespace ProyectoDintNuno
                 tbArtist.BackColor = Color.White;
             }
 
-
             if (String.IsNullOrEmpty(Name))
             {
                 tbName.BackColor = Color.Red;   
@@ -83,9 +82,17 @@ namespace ProyectoDintNuno
             {
                 if (of.CheckFileExists)
                 {
-                    Image = Image.FromFile(of.FileName);
-                    pbImage.Image = Image;
-                    pathInic = Path.GetFullPath(of.FileName);
+                    try
+                    {
+                        Image = Image.FromFile(of.FileName);
+                        pbImage.Image = Image;
+                        pathInic = Path.GetFullPath(of.FileName);
+                    }
+                    catch(OutOfMemoryException ex)
+                    {
+                        MessageBox.Show("Error en la elección de Imagen\n" + ex.Message);
+                    }
+                    
                 }
             }
         }
@@ -95,47 +102,16 @@ namespace ProyectoDintNuno
 
         }
 
-        /*private void borraHint(object sender, EventArgs e, string s)
+        private void lblFormat_Click(object sender, EventArgs e)
         {
-            
-            if (string.IsNullOrWhiteSpace(tbName.Text.ToString()))
-                tbName.Text = s;
-            
+
         }
 
-        private void escribeHint(object sender, EventArgs e, string s)
+        private void cbFormat_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (tbName.Text == s)
-                tbName.Text = "";
-        }*/
 
-        /*private void VistaAnadir_Load(object sender, EventArgs e)
-        {
-            tbName.Text = "Nombre";
-            tbName.GotFocus += new System.EventHandler(escribeHint("Nombre"));
-            tbName.LostFocus += new System.EventHandler(borraHint("Nombre"));
-
-            tbArtist.Text = "Artista principal";
-            tbArtist.GotFocus += new System.EventHandler(escribeHint("Artista principal"));
-            tbArtist.LostFocus += new System.EventHandler(borraHint("Artista principal"));
-
-            tbSecArtist.Text = "Artista secundario";
-            tbSecArtist.GotFocus += new System.EventHandler(escribeHint("Artista secundario"));
-            tbSecArtist.LostFocus += new System.EventHandler(borraHint("Artista secundario"));
         }
 
-        private EventHandler borraHint(string s)
-        {
-            if (tbName.Text == s)
-                tbName.Text = "";
-            throw new NotImplementedException();
-        }
-
-        private EventHandler escribeHint(string s)
-        {
-            if (string.IsNullOrWhiteSpace(tbName.Text.ToString()))
-                tbName.Text = s;
-            throw new NotImplementedException();
-        }*/
+        
     }
 }
